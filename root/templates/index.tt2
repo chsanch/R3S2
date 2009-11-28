@@ -1,0 +1,3 @@
+[% INCLUDE 'includes/header.tt2'%]
+<h1> Index </h1>
+[% INCLUDE 'includes/footer.tt2'%]
