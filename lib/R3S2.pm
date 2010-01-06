@@ -16,7 +16,12 @@ use Catalyst::Runtime 5.80;
 use parent qw/Catalyst/;
 use Catalyst qw/-Debug
                 ConfigLoader
-                Static::Simple/;
+                Static::Simple
+                Authentication
+                Session
+                Session::Store::FastMmap
+                Session::State::Cookie
+                /;
 our $VERSION = '0.01';
 
 # Configure the application.
@@ -36,6 +41,13 @@ __PACKAGE__->config(
         __PACKAGE__->path_to('root','templates'), 
     } 
 );
+ __PACKAGE__->config->{'Plugin::Authentication'} = {
+            default => {
+                class           => 'SimpleDB',
+                user_model      => 'DB::Usuario',
+                password_type   => 'self_check',
+            },
+        };
 
 # Start the application
 __PACKAGE__->setup();

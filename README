@@ -1,2 +1,4 @@
 r3s2 is the small-sized registration system for any-sized events. It's developed in Perl, under the Catalyst MVC Framework. It's based in the r3s project, this is the r3s reloaded ;) 
 This is the very first version of the project.
+
+ sudo aptitude install libdbix-class-encodedcolumn-perl libdbix-class-timestamp-perl
