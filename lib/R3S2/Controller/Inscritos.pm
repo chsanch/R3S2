@@ -1,12 +1,12 @@
-package R3S2::Controller::Inscrito;
+package R3S2::Controller::Inscritos;
+use Moose;
+use namespace::autoclean;
 
-use strict;
-use warnings;
-use parent 'Catalyst::Controller';
+BEGIN {extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-R3S2::Controller::Inscrito - Catalyst Controller
+R3S2::Controller::Inscritos - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -24,13 +24,13 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->response->body('Matched R3S2::Controller::Inscrito in Inscrito.');
+    $c->response->body('Matched R3S2::Controller::Inscritos in Inscritos.');
 }
 
 
 =head1 AUTHOR
 
-Christian Sánchez,,,
+Christian Sánchez
 
 =head1 LICENSE
 
@@ -39,4 +39,5 @@ it under the same terms as Perl itself.
 
 =cut
 
-1;
+__PACKAGE__->meta->make_immutable;
+
