@@ -1,4 +1,4 @@
-package R3S2::Schema::Result::Rol;
+package R3S2::Schema::Result::Distro;
 
 use strict;
 use warnings;
@@ -6,12 +6,12 @@ use warnings;
 use base 'DBIx::Class';
 
 __PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "EncodedColumn", "Core");
-__PACKAGE__->table("rol");
+__PACKAGE__->table("distro");
 __PACKAGE__->add_columns(
   "id",
   {
     data_type => "integer",
-    default_value => "nextval('role_id_seq'::regclass)",
+    default_value => "nextval('distro_id_seq'::regclass)",
     is_nullable => 0,
     size => 4,
   },
@@ -22,21 +22,16 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
     size => undef,
   },
-  "descripcion",
-  {
-    data_type => "text",
-    default_value => undef,
-    is_nullable => 1,
-    size => undef,
-  },
 );
 __PACKAGE__->set_primary_key("id");
-__PACKAGE__->add_unique_constraint("rol_id", ["id"]);
+__PACKAGE__->add_unique_constraint("distro_id", ["id"]);
 
 
 # Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Az1UOBELzgQK/dcYIiPpyQ
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:JDufXMrtYWtXs89CJdFNpw
 
-__PACKAGE__->has_many( "map_usuario_roles" => "R3S2::Schema::Result::UsuarioRol",'rol_id');
+__PACKAGE__->has_many("sede_distros" => "R3S2::Schema::Result::SedeDistro", "distro_id");
+__PACKAGE__->many_to_many(sedes => 'sede_distros', 'sede');
+
 
 1;

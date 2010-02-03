@@ -5,4 +5,9 @@
     <title>[% c.config.name %]</title>
 </head>
 <body>
+    [% IF c.user_exists %]
+        <p>Please Note: You are already logged in as '[% c.user.username %]'.
+        You can <a href="[% c.uri_for('/logout') %]">logout</a> here.</p>
+    [% END %]
+
     

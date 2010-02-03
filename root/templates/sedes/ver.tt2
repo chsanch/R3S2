@@ -1,0 +1,5 @@
+[% META title = 'Detalle Sede' -%]
+<h1> Sede  [% sede.ciudad %]  [% sede.inscritos.size %]</h1>
+[% FOREACH distro  IN sede.sede_distros %]
+<p> [% distro.distro.nombre %]: </p>
+[% END %]

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es-ES" xml:lang="es-ES"  xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/reset-fonts-grids.css') %]" />
+        <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/main.css') %]" />
+        <title>[% c.config.name %] :: [% template.title %]</title>
+    </head>
+
+    <body>
+        <div id="doc2" class="yui-t1">
+            <div id="hd" role="banner">
+                <div id="encabezado"> </div>
+                <div id="bestado">
+                    [% IF c.user_exists %]
+                    <span class="usuario">Sesion del usuario: [% c.user.username %]  [% c.user.sedes.sede.id %]</span>
+                    [% END %]
+                </div>
+            </div>
+    
+            <div id="bd">
+                <div id="contenido">
+                <div id ="yui-main">
+                    <div id="yui-gc">
+                        <div class="yui-u first">
+                            <div id="principal">
+                                [%# Status and error messages %]
+                                <span class="message">[% status_msg %]</span>
+                                <span class="error">[% error_msg %]</span>
+                                [%# This is where TT will stick all of your template's contents. -%]
+                                [% content %]
+                            </div><!-- end content -->
+                        </div>
+                        <div class="yui-u ">
+                            <div id="secundario">
+                                [% PROCESS includes/menu.tt2 %]
+                            </div>
+                        </div>
+                        <div style="clear: both;"> </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div id="pie">Copyright (c) your name goes here <img src="[% c.uri_for('/static/images/btn_88x31_powered.png') %]" />
+            </div>
+            
+        </div>
+    </body>
+</html>

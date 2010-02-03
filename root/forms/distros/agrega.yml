@@ -1,0 +1,19 @@
+---
+indicator: submit
+elements:
+ - type: Text
+   name: nombre
+   label: Nombre de la Distribuci&oacute;n
+   attributes:
+    title: Indique el nombre de la distribucion
+ 
+ - type: Submit
+   name: submit
+   value: Guardar
+   
+constraints:
+ - Required
+
+filter:
+ - TrimEdges
+ - HTMLEscape

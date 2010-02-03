@@ -1,0 +1,147 @@
+html, body{ 
+ margin:0; 
+ padding:0; 
+ font-family: verdana,sans-serif, arial;
+ color: #454545;
+ font-size:100%;
+}
+
+p {
+    font-size:1em;
+    padding: 2px;
+    margin: 4px 1px;
+}
+
+h1 {
+    font-size: 1.6em;
+    padding: 2px;
+    margin: 2px;
+}
+
+ dt {
+       font-weight: bold;
+ }
+
+label {
+	cursor: pointer;
+}
+
+textarea, input, select {
+	background: #e7e7e7;
+	border: 1px solid #b2b2b2;
+	color: #000;
+	margin: 1px;
+	padding: 3px;
+}
+
+input:focus, textarea:focus, label:focus {
+	background: #fff;
+	border: 1px solid #686868;
+}
+
+
+
+div#encabezado {
+    background: url("/static/images/logo.png") no-repeat scroll center bottom transparent;
+    height:150px;
+    position:relative;
+}
+
+div#principal {
+    padding: 10px 0;
+    margin: 0 10px;
+    width: 75%;
+    float: left;
+    font-size: 12px;
+    text-align: justify;
+}
+
+div#secundario{
+    padding: 15px 0;
+    margin: 0 10px;
+    width: 20%;
+    float: right;
+}
+
+div#contenido {
+min-height:450px;
+padding:0 10px;
+}
+
+.sede-even {
+    width:48%;
+    background-color: #EEDDFF;
+    margin: 2px 2px;
+    float:right;
+}
+
+.sede-odd {
+    width:48%;
+    background-color: #4433FF;
+    margin: 2px 2px;
+    float: left;
+    clear: both;
+}
+
+.clear{
+    clear:both;
+}
+
+input {
+        display: block;
+    }
+    
+select {
+    display: block;
+}
+
+.submit {
+    padding-top: .5em;
+    display: block;
+}
+
+/*menu*/
+#vertmenu {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 1.3em;
+width: 165px;
+padding: 0px;
+margin: 0px;
+}
+
+#vertmenu h1 {
+display: block;
+background-color:#FF9900;
+font-size: 1.3em;
+padding: 3px 0 5px 3px;
+border: 1px solid #000000;
+color: #333333;
+margin: 0px;
+width:159px;
+}
+
+#vertmenu ul {
+list-style: none;
+margin: 0px;
+padding: 0px;
+
+}
+#vertmenu ul li {
+margin: 0px;
+padding: 0px;
+}
+#vertmenu ul li a {
+font-size: 1.1em;
+display: block;
+border-bottom: 1px solid #5F5F5F;
+padding: 5px 0px 2px 4px;
+text-decoration: none;
+color: #666666;
+width:160px;
+}
+
+#vertmenu ul li a:hover, #vertmenu ul li a:focus {
+color: #000000;
+background-color: #eeeeee;
+}
+/*menu*/

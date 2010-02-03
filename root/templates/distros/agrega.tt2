@@ -1,0 +1,4 @@
+[% META title = 'Agregar Distribuci&oacute;n' -%]
+<h1> Agrega Distribuci&oacute;n para instalar </h1>
+
+[% form %]

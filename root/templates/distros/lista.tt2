@@ -1,0 +1,14 @@
+[% META title = 'Lista de Sedes' -%]
+<h1> Distribuciones a Instalar </h1>
+
+<ul>
+[% FOREACH distro IN distros %]
+
+<li> [% distro.nombre %]
+<a href="[% c.uri_for(c.controller.action_for('editar'), [distro.id]) %]">editar</a>
+<a href="[% c.uri_for(c.controller.action_for('eliminar'), [distro.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">eliminar</a></li>
+
+[% END %]
+</ul>
+
+<p><a href="[% c.uri_for(c.controller.action_for('agrega')) %]">Agregar Registro</a></p>

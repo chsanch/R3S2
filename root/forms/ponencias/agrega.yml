@@ -1,0 +1,72 @@
+---
+indicator: submit
+elements:
+ - type: Text
+   name: nombres
+   label: Nombres
+   attributes:
+    title: Indique su nombre
+   constraints:
+    - Required
+    
+ - type: Text
+   name: apellidos
+   label: Apellidos
+   attributes:
+    title: Indique sus apellidos
+   constraints:
+    - Required
+    
+ - type: Text
+   name: email
+   label: Correo Electrónico
+   attributes:
+    title: Indique su Correo
+   constraints:
+    - Required
+    - Email
+    
+ - type: Text
+   name: twitter
+   label: Twitter
+   attributes:
+    title: Indique su cuenta en Twitter (si posee)
+ 
+ - type: Text
+   name: url
+   label: URL
+   attributes:
+    title: Indique su sitio web (si posee)
+      
+ - type: Text
+   name: titulo_ponencia
+   label: Titulo de la Ponencia
+   attributes:
+    title: Indique el Titulo de la Ponencia
+   constraints:
+    - Required
+ - type: Textarea
+   name: descripcion_ponencia
+   label: Descripcion de la Ponencia
+   attributes:
+    title: Describe la ponencia
+    cols: 40
+    rows: 6
+   constraints:
+    - Required
+
+ - type: reCAPTCHA
+   name: recaptcha
+   public_key: 6Lf6qgoAAAAAAKyw17F01gKSOiwMjRDWrOn1mifU
+   private_key: 6Lf6qgoAAAAAAB4PIfM12lw-0f9M1aGWX2MAWCXi
+   constraint_args:
+    message: 'Por favor, demuestra que eres humano'
+ 
+ - type: Submit
+   name: submit
+   value: Guardar
+   
+
+filter:
+ - TrimEdges
+ - HTMLEscape

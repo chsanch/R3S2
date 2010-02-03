@@ -1,0 +1,13 @@
+[% META title = 'Lista de Sedes' -%]
+<h1> Inscritos por Sedes </h1>
+[% FOREACH sede IN sedes %]
+
+[% IF loop.index % 2 %] <div class="sede-even"> [% ELSE %] <div class="sede-odd">[% END %]
+<h2>[% sede.ciudad %]:</h2> 
+<h3>[% sede.lugar %]<h3> 
+<p>[% sede.fecha_str %].</p>
+<p>Total inscritos: [% sede.inscritos.size %]  </p>
+<p> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">Ver</a></p>
+</div> 
+[% END %]
+<div class="clear"></div>

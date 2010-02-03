@@ -1,0 +1,4 @@
+[% META title = 'Agregar Sede' -%]
+<h1> Agrega Inscrito en la sede de [% sede.ciudad %] </h1>
+
+[% form %]

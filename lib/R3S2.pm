@@ -18,9 +18,12 @@ use Catalyst qw/-Debug
                 ConfigLoader
                 Static::Simple
                 Authentication
+                Authorization::Roles 
                 Session
                 Session::Store::FastMmap
                 Session::State::Cookie
+                I18N
+                Unicode
                 /;
 our $VERSION = '0.01';
 
@@ -33,22 +36,43 @@ our $VERSION = '0.01';
 # with an external configuration file acting as an override for
 # local deployment.
 
-__PACKAGE__->config( name => 'R3S2' );
+__PACKAGE__->config( name => 'Flisol 2010' );
 __PACKAGE__->config->{default_view} = 'TT';
 __PACKAGE__->config( 
     'View::TT' => { 
         INCLUDE_PATH =>  
         __PACKAGE__->path_to('root','templates'), 
+        WRAPPER => 'includes/wrapper.tt2',
+        ENCODING => 'UTF-8',
     } 
 );
- __PACKAGE__->config->{'Plugin::Authentication'} = {
-            default => {
-                class           => 'SimpleDB',
-                user_model      => 'DB::Usuario',
-                password_type   => 'self_check',
-            },
-        };
 
+__PACKAGE__->config(
+        name    => 'MyApp',
+        session => {flash_to_stash => 1},
+);
+
+ __PACKAGE__->config->{authentication} = 
+                    {  
+                        default_realm => 'usuarios',
+                        realms => {
+                            usuarios => {
+                                credential => {
+                                    class => 'Password',
+                                    password_field => 'password',
+                                    password_type => 'self_check',
+                            #        password_hash_type => 'SHA-1'                              
+                                },
+                                store => {
+                                    class => 'DBIx::Class',
+                                    user_model => 'DB::Usuario',
+                                    role_relation => 'roles',
+                                    role_field => 'nombre',     
+                                }
+                                }
+                        }
+                    };
+    
 # Start the application
 __PACKAGE__->setup();
 

@@ -23,8 +23,31 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
+    
+    # Get the username and password from form
+    my $username = $c->request->params->{username};
+    my $password = $c->request->params->{password};
+    
+    # If the username and password values were found in form
+    if (defined($username) && defined($password)) {
+        # Attempt to log the user in
+        if ($c->authenticate({ username => $username,
+                               password => $password  } )) {
+            #obtenemos la pagina desde donde estamos referenciando
+            my $referer = $c->req->referer;
+            $referer = '/admin/' if ( $c->req->path == 'login');
+            #dirigimos la salida a esa página
+            $c->response->redirect($referer);
+            return;
+        } else {
+            # Mensaje de error
+            $c->stash->{error_msg} = "Nombre de usuario o password incorrectos.";
+        }
+    }
 
-    $c->response->body('Matched R3S2::Controller::Login in Login.');
+    # If either of above don't work out, send to the login page
+    $c->stash->{template} = 'login.tt2';
+
 }
 
 

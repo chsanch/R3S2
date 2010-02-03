@@ -1,0 +1,9 @@
+[% INCLUDE 'includes/header.tt2'%]
+<h1> Inscribir </h1>
+[% INCLUDE 'includes/footer.tt2'%]
+
+<h3>Indica la sede a la cual quieres inscribirte</h3>
+
+[% FOREACH sede IN sedes %]
+ <p> <a href="[% c.uri_for("/sede/") _ sede.id %]/agrega">[% sede.ciudad %]</a></p>
+[% END %]

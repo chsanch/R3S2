@@ -1,0 +1,4 @@
+[% META title = 'Agregar Sede' -%]
+<h1> Agrega Sede </h1>
+
+[% form %]

@@ -1,0 +1,106 @@
+---
+indicator: submit
+elements:
+ - type: Text
+   name: nombres
+   label: Nombres
+   attributes:
+    title: Indique su nombre
+   constraints:
+    - Required
+    
+ - type: Text
+   name: apellidos
+   label: Apellidos
+   attributes:
+    title: Indique sus apellidos
+   constraints:
+    - Required
+    
+ - type: Text
+   name: email
+   label: Correo Electrónico
+   attributes:
+    title: Indique su Correo
+   constraints:
+    - Required
+    - Email
+    
+ - type: Text
+   name: twitter
+   label: Twitter
+   attributes:
+    title: Indique su cuenta en Twitter (si posee)
+
+ - type: Select
+   name: tipo_comp
+   label: Tipo de Computador
+   attributes:
+    title: Indique el tipo de computador
+   options:
+    - [ ' ', '--' ]
+    - [ 'Escritorio', 'Escritorio' ]
+    - [ 'Portatil', 'Portatil' ]
+    - [ 'NetBook', 'NetBook' ]
+   constraints:
+    - Required
+ 
+ - type: Select
+   name: tipo_proc
+   label: Tipo de Procesador
+   attributes:
+    title: Indique el tipo de procesador
+   options:
+    - [ ' ', '--' ]
+    - [ 'Pentium I', 'Pentium I' ]
+    - [ 'Pentium II', 'Pentium II' ]
+    - [ 'NetBook', 'NetBook' ]
+   constraints:
+    - Required
+    
+ - type: Text
+   name: cant_ram
+   label: Cantidad de RAM
+   attributes:
+    title: Indique la cantidad de RAM de su equipo
+   constraints:
+    - Required
+
+ - type: Text
+   name: esp_dd
+   label: Espacio disponible en Disco
+   attributes:
+    title: Indique la cantidad de espacio disponible en su disco
+   constraints:
+    - Required
+    
+ - type: Select
+   name: distro
+   label: Distribución a Instalar
+   attributes:
+    title: Indique la distribucion que quiere instalar
+   constraints:
+    - Required
+
+ - type: Textarea
+   name: comentarios
+   label: Algun Comentario
+   attributes:
+    title: Algun comentario
+    cols: 40
+    rows: 6
+ - type: reCAPTCHA
+   name: recaptcha
+   public_key: 6Lf6qgoAAAAAAKyw17F01gKSOiwMjRDWrOn1mifU
+   private_key: 6Lf6qgoAAAAAAB4PIfM12lw-0f9M1aGWX2MAWCXi
+   constraint_args:
+    message: 'Por favor, demuestra que eres humano'
+ 
+ - type: Submit
+   name: submit
+   value: Guardar
+   
+
+filter:
+ - TrimEdges
+ - HTMLEscape

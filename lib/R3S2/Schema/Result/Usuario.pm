@@ -15,7 +15,7 @@ __PACKAGE__->add_columns(
     is_nullable => 0,
     size => 4,
   },
-  "login",
+  "username",
   {
     data_type => "text",
     default_value => undef,
@@ -45,18 +45,34 @@ __PACKAGE__->add_columns(
   },
   "activo",
   { data_type => "integer", default_value => 1, is_nullable => 1, size => 4 },
+  "email",
+  {
+    data_type => "text",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
+  "twitter",
+  {
+    data_type => "text",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
+  "website",
+  {
+    data_type => "text",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
 );
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("usuario_id", ["id"]);
-__PACKAGE__->has_many(
-  "usuario_rols",
-  "R3S2::Schema::Result::UsuarioRol",
-  { "foreign.usuario_id" => "self.id" },
-);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2009-12-20 17:28:08
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Bjut92dIQ6KLQNhSAK7Awg
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EI8+bcwT61PcRzSkwghJlA
 
 #Para cifrar la clave
 __PACKAGE__->add_columns(
@@ -70,5 +86,10 @@ __PACKAGE__->add_columns(
         },
     );
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+
+__PACKAGE__->has_many( "map_usuario_roles" => "R3S2::Schema::Result::UsuarioRol",'usuario_id');
+__PACKAGE__->has_many("sedes" => "R3S2::Schema::Result::UsuarioSede",'usuario_id');
+
+__PACKAGE__->many_to_many(roles => 'map_usuario_roles', 'rol');
+
 1;

@@ -1,0 +1,3 @@
+[% META title = 'Administracion' -%]
+<p> Desde esta secci&oacute;n puedes administrar todo lo referente al [% c.config.name %]</p>
+<p>Hay [% tot_inscritos %] personas inscritas. <a href="[% c.uri_for('/admin/inscritos') %]">ver</a></p>

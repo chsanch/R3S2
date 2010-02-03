@@ -1,0 +1,13 @@
+<div id="vertmenu">
+<ul>
+    <li> <a href="[% c.uri_for('/') %]" tabindex="1">Inicio</a></li>
+    <li> <a href="[% c.uri_for('/sedes') %]" tabindex="2">Sedes</a></li>
+    [% IF c.user_exists %]
+    <li> <a href="[% c.uri_for('/admin') %]" tabindex="2">Administracion</a></li>
+    <li> <a href="[% c.uri_for('/logout') %]">Cerrar Sesi&oacute;n</a></li>
+    [% IF c.check_user_roles('admin') %]
+     <li> <a href="[% c.uri_for('/admin/distros/lista') %]">Distros</a></li>
+    [% END %]
+    [% END %]
+</ul>
+</div>

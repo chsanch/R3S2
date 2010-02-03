@@ -1,0 +1,37 @@
+---
+indicator: submit
+elements:
+ - type: Text
+   name: ciudad
+   label: Ciudad
+   attributes:
+    title: Indique el nombre de la ciudad
+    
+ - type: Text
+   name: lugar
+   label: Lugar
+   attributes:
+    title: Lugar donde se realizar&aacute; el evento
+    
+ - type: Date
+   name: fecha
+   label: Fecha
+   attributes:
+    title: Fecha del evento
+
+ - type: Checkboxgroup
+   name: distros
+   label: Distros a Instalar
+   attributes:
+    title: Indique la distribuciones a instalar
+ 
+ - type: Submit
+   name: submit
+   value: Guardar
+   
+constraints:
+ - Required
+
+filter:
+ - TrimEdges
+ - HTMLEscape
