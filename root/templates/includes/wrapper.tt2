@@ -4,6 +4,10 @@
     <head>
         <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/reset-fonts-grids.css') %]" />
         <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/main.css') %]" />
+        <script type="text/javascript" src="[% c.uri_for('/static/js/jquery.min.js') %] "></script> 
+	<script type="text/javascript" src="[% c.uri_for('/static/js/jquery.tablesorter.min.js') %] "></script> 
+	<script type="text/javascript" src="[% c.uri_for('/static/js/jquery.tablesorter.pager.js')%] "></script>
+        <script type="text/javascript" src="[% c.uri_for('/static/js/jquery.metadata.js') %] "></script> 
         <title>[% c.config.name %] :: [% template.title %]</title>
     </head>
 
@@ -13,7 +17,7 @@
                 <div id="encabezado"> </div>
                 <div id="bestado">
                     [% IF c.user_exists %]
-                    <span class="usuario">Sesion del usuario: [% c.user.username %]  [% c.user.sedes.sede.id %]</span>
+                    <span class="usuario">Sesion del usuario: [% c.user.username %] </span>
                     [% END %]
                 </div>
             </div>
@@ -25,8 +29,12 @@
                         <div class="yui-u first">
                             <div id="principal">
                                 [%# Status and error messages %]
-                                <span class="message">[% status_msg %]</span>
-                                <span class="error">[% error_msg %]</span>
+                                [% IF status_msg %]
+                                <div class="message">[% status_msg %]</div>
+                                [% END %]
+                                [% IF error_msg %]
+                                <div class="error">[% error_msg %]</div>
+                                [% END %]
                                 [%# This is where TT will stick all of your template's contents. -%]
                                 [% content %]
                             </div><!-- end content -->
@@ -42,7 +50,7 @@
                 </div>
             </div>
             
-            <div id="pie">Copyright (c) your name goes here <img src="[% c.uri_for('/static/images/btn_88x31_powered.png') %]" />
+            <div id="pie"> [% c.config.name %] <img src="[% c.uri_for('/static/images/btn_88x31_powered.png') %]" />
             </div>
             
         </div>

@@ -1,11 +1,16 @@
 [% META title = 'Flisol 2010' -%]
+<div class="bloqinfo">
 <p>
 <strong>&iquest;Pretendes ir a FLISoL  2010 este pr&oacute;ximo 24 de Abril? &iquest;Te has decidido por el software libre? &iexcl;Perfecto! Pues aqu&iacute; una gu&iacute;a con las recomendaciones que debes seguir:</strong>
 </p>
 <p>En el FLISoL 2010 encontrar&aacute;s entusiastas y profesionales que est&aacute;n dispuestos a ayudarte en tu traspaso al software libre. Como toda nueva experiencia, uno suele tener cierta incertidumbre, pero no hay nada que temer. Mucha gente cree que UNA PC es algo MUY MUY serio y que como en Latinoam&eacute;rica, generalmente la han pagado algo cara, temen por su seguridad!</p>
-<p>
+</div>
+<div class="bloqinfo">
 <h1> Sedes </h1>
 <p> Puedes inscribirte en cualquiera de las siguientes sedes: </p>
+<ul>
 [% FOREACH sede IN sedes %]
-<p> [% sede.ciudad %]: [% sede.lugar %] - [% sede.fecha_str %]. <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">&iexcl;Voy a esta!</a> </p>
+<li> <h3>[% sede.ciudad %]:</h3> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">[% sede.lugar %] </a>- Fecha: [% sede.fecha_str %]. <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">Inscribirme</a> - <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega/ponente">Proponer una ponencia</a></li>
 [% END %]
+</ul>
+</div>

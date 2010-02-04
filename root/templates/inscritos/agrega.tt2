@@ -1,4 +1,9 @@
 [% META title = 'Agregar Sede' -%]
-<h1> Agrega Inscrito en la sede de [% sede.ciudad %] </h1>
-
+<h1> Agregar Inscrito en la sede de [% sede.ciudad %] </h1>
+<p> Los campos en <strong>Negrita</strong> son obligatorios</p>
+<div class="bloqinfo">
 [% form %]
+</div>
+<div class="bloqinfo">
+    <p> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">Volver a datos de la Sede</p>
+</div>

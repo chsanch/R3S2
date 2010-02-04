@@ -101,7 +101,7 @@ ALTER SEQUENCE distro_id_seq OWNED BY distro.id;
 -- Name: distro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('distro_id_seq', 4, true);
+SELECT pg_catalog.setval('distro_id_seq', 11, true);
 
 
 --
@@ -149,7 +149,7 @@ ALTER SEQUENCE inscrito_id_seq OWNED BY inscrito.id;
 -- Name: inscrito_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('inscrito_id_seq', 6, true);
+SELECT pg_catalog.setval('inscrito_id_seq', 10, true);
 
 
 --
@@ -166,7 +166,8 @@ CREATE TABLE ponente (
     fecha_ins date,
     sede integer,
     titulo_ponencia text,
-    descripcion_ponencia text
+    descripcion_ponencia text,
+    aceptada character(1) DEFAULT 0
 );
 
 
@@ -192,7 +193,7 @@ ALTER SEQUENCE ponente_id_seq OWNED BY ponente.id;
 -- Name: ponente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('ponente_id_seq', 19, true);
+SELECT pg_catalog.setval('ponente_id_seq', 21, true);
 
 
 --
@@ -301,7 +302,6 @@ CREATE TABLE usuario (
 --
 
 CREATE SEQUENCE usuario_id_seq
-    START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
@@ -319,7 +319,7 @@ ALTER SEQUENCE usuario_id_seq OWNED BY usuario.id;
 -- Name: usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('usuario_id_seq', 1, false);
+SELECT pg_catalog.setval('usuario_id_seq', 5, true);
 
 
 --
@@ -392,28 +392,37 @@ INSERT INTO distro VALUES (1, 'Debian');
 INSERT INTO distro VALUES (2, 'Ubuntu');
 INSERT INTO distro VALUES (3, 'Fedora');
 INSERT INTO distro VALUES (4, 'Canaima');
+INSERT INTO distro VALUES (5, 'Slackware');
+INSERT INTO distro VALUES (6, 'Knoppix');
+INSERT INTO distro VALUES (7, 'Arch');
 
 
 --
 -- Data for Name: inscrito; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO inscrito VALUES (1, 'Juan', 'Perez', 'juan@perez.com', '@jperez', 'Escritorio', 'Pentium I', '2000', '10000', 'Debian', 'Prueba', NULL, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (2, 'Maria', 'Perez', 'maria@perez.com', '@perezm', 'Escritorio', 'Pentium I', '222', '222', 'Debian', 'sssss', NULL, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (3, 's', 's', 's', 's', 'Escritorio', 'Pentium I', 's', 's', 'Debian', 's', 1, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (4, 'f', 's', 'd', 'f', 'Escritorio', 'Pentium I', 'j', 'e', 'Slackware', 'd', 1, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (5, 'Andres', 'Lopez', 'ss', 'sss', 'Escritorio', 'Pentium I', '3', '3', 'Debian', 'sssd', 2, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (6, 'Juan', 'Rodriguez', 'j', 's', 'Escritorio', 'Pentium I', 'q', '3', 'Debian', 'w', 3, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (1, 'Juan', 'Perez', 'juan@perez.com', '@jperez', 'Escritorio', 'Pentium I', '2000', '10000', 'Debian', 'Prueba', 1, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (2, 'Maria', 'Perez', 'maria@perez.com', '@perezm', 'Escritorio', 'Pentium I', '222', '222', 'Debian', 'sssss', 1, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (6, 'Juan', 'Rodriguez', 'j', 's', 'Escritorio', 'Pentium I', 'q', '3', 'Debian', 'w', 4, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (5, 'Andres', 'Lopez', 'ss', 'sss', 'Escritorio', 'Pentium I', '3', '3', 'Debian', 'sssd', 4, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (4, 'f', 's', 'd', 'f', 'Escritorio', 'Pentium I', 'j', 'e', 'Slackware', 'd', 4, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (3, 's', 's', 's', 's', 'Escritorio', 'Pentium I', 's', 's', 'Debian', 's', 4, '0', NULL, NULL);
+INSERT INTO inscrito VALUES (7, 'Pedro', 'Perez', 'juan@perez.com', '@perezj', 'Escritorio', 'Pentium I', '2000', '10GB', '2', 'nada', 1, '0', 'Web', '2010-02-03');
+INSERT INTO inscrito VALUES (8, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '300', '300', '4', 'xx', 3, '0', 'Amigo', '2010-02-03');
+INSERT INTO inscrito VALUES (9, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '500GN', '500GB', '1', NULL, 2, '0', 'Amigo', '2010-02-03');
+INSERT INTO inscrito VALUES (10, 'Jose', 'Perez', 'jose@perz.com', '@jperez', 'Escritorio', 'Pentium II', '200M', '10GB', '1', NULL, 1, '1', 'Otro', '2010-02-04');
 
 
 --
 -- Data for Name: ponente; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO ponente VALUES (16, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve/', '2010-01-29', 4, 'Programando Perl', 'Programando Perl en Linux');
-INSERT INTO ponente VALUES (17, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 2, 'Otra Charla de Perl', 'Otra Charla Mas de Perl ...');
-INSERT INTO ponente VALUES (18, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Ruby', 'Charla de Ruby');
-INSERT INTO ponente VALUES (19, 'Juan', 'Perez', 'jjms0309@gmail.com', '@jperez', 'jperez.com', '2010-01-29', 4, 'PHP', 'Charla de PHP');
+INSERT INTO ponente VALUES (16, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve/', '2010-01-29', 4, 'Programando Perl', 'Programando Perl en Linux', '1');
+INSERT INTO ponente VALUES (17, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Otra Charla de Perl', 'Otra Charla Mas de Perl ...', '0');
+INSERT INTO ponente VALUES (19, 'Juan', 'Perez', 'jjms0309@gmail.com', '@jperez', 'jperez.com', '2010-01-29', 4, 'PHP', 'Charla de PHP', '1');
+INSERT INTO ponente VALUES (18, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Ruby', 'Charla de Ruby', '0');
+INSERT INTO ponente VALUES (20, 'Carlos Andres', 'Perez', 'caperez@ad.com', '@gocho88', 'http://gocho88.com', '2010-02-04', 1, 'Programando Java', 'Como programar en Java', '0');
+INSERT INTO ponente VALUES (21, 'Alvaro', 'Fuentes', 'kronox@gmail.com', '@kronox', 'http://kronox.com', '2010-02-04', 3, 'Programando Android', 'Como programar en Android', '1');
 
 
 --
@@ -428,27 +437,33 @@ INSERT INTO rol VALUES (2, 'coordinador', 'Coordinador de algun area de la aplic
 -- Data for Name: sede; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sede VALUES (1, 'Maracay', 'Teatro de la Opera', '2009-04-24');
-INSERT INTO sede VALUES (2, 'Merida', 'Anfiteatro', '2010-04-18');
-INSERT INTO sede VALUES (3, 'Caracas', 'UJnefa', '2010-04-24');
 INSERT INTO sede VALUES (4, 'Guanarito', 'Sede Guanarito', '2010-04-24');
+INSERT INTO sede VALUES (3, 'Caracas', 'Unefa Caracas', '2010-04-24');
+INSERT INTO sede VALUES (2, 'Merida', 'Anfiteatro Febres Cordero', '2010-04-18');
+INSERT INTO sede VALUES (1, 'Maracay', 'Teatro de la Opera', '2010-04-24');
 
 
 --
 -- Data for Name: sede_distro; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO sede_distro VALUES (1, 1);
-INSERT INTO sede_distro VALUES (1, 2);
-INSERT INTO sede_distro VALUES (1, 3);
-INSERT INTO sede_distro VALUES (2, 1);
-INSERT INTO sede_distro VALUES (2, 3);
-INSERT INTO sede_distro VALUES (3, 4);
-INSERT INTO sede_distro VALUES (3, 1);
 INSERT INTO sede_distro VALUES (4, 1);
 INSERT INTO sede_distro VALUES (4, 2);
 INSERT INTO sede_distro VALUES (4, 3);
 INSERT INTO sede_distro VALUES (4, 4);
+INSERT INTO sede_distro VALUES (3, 1);
+INSERT INTO sede_distro VALUES (3, 2);
+INSERT INTO sede_distro VALUES (3, 3);
+INSERT INTO sede_distro VALUES (3, 4);
+INSERT INTO sede_distro VALUES (3, 5);
+INSERT INTO sede_distro VALUES (3, 6);
+INSERT INTO sede_distro VALUES (3, 7);
+INSERT INTO sede_distro VALUES (2, 1);
+INSERT INTO sede_distro VALUES (2, 3);
+INSERT INTO sede_distro VALUES (1, 1);
+INSERT INTO sede_distro VALUES (1, 2);
+INSERT INTO sede_distro VALUES (1, 3);
+INSERT INTO sede_distro VALUES (1, 4);
 
 
 --
@@ -456,7 +471,8 @@ INSERT INTO sede_distro VALUES (4, 4);
 --
 
 INSERT INTO usuario VALUES (1, 'csanchez', '90cbcc62c3251e18bc672241b012abe3caf5c40fje4Ae4bQrS', 'Christian', 'Sánchez', 1, NULL, NULL, NULL);
-INSERT INTO usuario VALUES (2, 'prueba', 'b24e96454074ce091eb72c6ce8401804126302583E7wYB3SR6', 'Prueba', 'Prueba', 1, NULL, NULL, NULL);
+INSERT INTO usuario VALUES (2, 'prueba', '90cbcc62c3251e18bc672241b012abe3caf5c40fje4Ae4bQrS', 'Prueba', 'Prueba', 1, NULL, NULL, NULL);
+INSERT INTO usuario VALUES (5, 'tatica', '90cbcc62c3251e18bc672241b012abe3caf5c40fje4Ae4bQrS', 'Maria Tatica', 'Leandro', 1, NULL, NULL, NULL);
 
 
 --
@@ -465,13 +481,15 @@ INSERT INTO usuario VALUES (2, 'prueba', 'b24e96454074ce091eb72c6ce8401804126302
 
 INSERT INTO usuario_rol VALUES (1, 1);
 INSERT INTO usuario_rol VALUES (2, 2);
-INSERT INTO usuario_rol VALUES (1, 2);
+INSERT INTO usuario_rol VALUES (5, 1);
 
 
 --
 -- Data for Name: usuario_sede; Type: TABLE DATA; Schema: public; Owner: -
 --
 
+INSERT INTO usuario_sede VALUES (1, 4);
+INSERT INTO usuario_sede VALUES (2, 3);
 
 
 --

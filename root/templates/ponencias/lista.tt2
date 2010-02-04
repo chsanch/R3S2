@@ -6,8 +6,8 @@
 <h2>[% sede.ciudad %]:</h2> 
 <h3>[% sede.lugar %]<h3> 
 <p>[% sede.fecha_str %].</p>
-<p>Total ponencias: [% sede.ponentes %]  </p>
-<p> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">Ver</a></p>
+<p>Total ponencias:  [% IF sede.ponentes.size > 1 %]  [% sede.ponentes.size %]  [% ELSE %] 0 [% END %]  </p>
+<p> <a href="[% c.uri_for('/admin/ponentes/lista/') _ sede.id %]">Ver</a></p>
 </div> 
 [% END %]
 <div class="clear"></div>

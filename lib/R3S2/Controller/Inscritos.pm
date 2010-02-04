@@ -48,10 +48,9 @@ sub inscritos :Chained('/admin') :PathPart('inscritos') :Args(0) {
 sub lista :Chained('/admin') :PathPart('inscritos/lista') :Args(1) {
     my ( $self, $c, $sede_id) = @_;
     
-    if ($c->check_user_roles('admin')) {
         $c->stash->{sede} = $c->model('DB::Sede')->find($sede_id);
-        $c->stash->{template} = 'sedes/ver.tt2';
-    }
+        $c->stash->{template} = 'inscritos/listasede.tt2';
+        $c->detach;
     
 }
 
@@ -64,8 +63,8 @@ sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
         my $inscrito = $c->model('DB::Inscrito')->new_result({});
         $inscrito->sede($c->stash->{sede}->id);
         $form->model->update($inscrito);
-        $c->stash->{status_msg} = 'Registro Agregado';
-        $c->response->redirect($c->uri_for($self->action_for('lista')));
+        $c->flash->{status_msg} = 'Te has Registrado Para esta Sede.';
+        $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
         $c->detach;
     }
     else {

@@ -1,4 +1,5 @@
-[% META title = 'Agregar Sede' -%]
-<h1> Agrega Sede </h1>
-
+[% META title = 'Datos de la Sede' -%]
+<h1> Datos de la Sede </h1>
+<div class="bloqinfo">
 [% form %]
+</div>

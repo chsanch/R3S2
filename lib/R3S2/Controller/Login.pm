@@ -35,7 +35,6 @@ sub index :Path :Args(0) {
                                password => $password  } )) {
             #obtenemos la pagina desde donde estamos referenciando
             my $referer = $c->req->referer;
-            $referer = '/admin/' if ( $c->req->path == 'login');
             #dirigimos la salida a esa página
             $c->response->redirect($referer);
             return;

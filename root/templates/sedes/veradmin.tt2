@@ -1,0 +1,51 @@
+[% META title = 'Detalle Sede' -%]
+<h1> Sede  [% sede.ciudad %] </h1>
+<div class="bloqinfo">
+<h2> Datos de la Sede </h2>
+<p> <strong> Lugar: </strong> [% sede.lugar %] </p>
+<p> <strong> Fecha: </strong> [% sede.fecha_str %] </p>
+</div>
+<div class="bloqinfo">
+<h2> Distros que se van a instalar </h2>
+<ul>
+[% FOREACH distro  IN sede.sede_distros %]
+<li> [% distro.distro.nombre %] </li>
+[% END %]
+</ul>
+</div>
+<div class="bloqinfo">
+<h2> Inscritos </h2>
+<p> Esta sede tiene [% IF sede.inscritos.size >= 1 %] [% sede.inscritos.size %]  [% ELSE %] 0 [% END %]inscritos <a href="[% c.uri_for('/admin/inscritos/lista', sede.id) %]">ver inscritos</a></p>
+</div>
+
+<div class="bloqinfo">
+    <h2>Ponencias</h2>
+    <div class="sede-odd">
+<h3>Aceptadas</h3>
+[% IF ponencias.size >= 1 %]
+<ul>
+[% FOREACH ponente  IN ponencias %]
+<li> [% ponente.titulo_ponencia %] <a href="[% c.uri_for('/admin/ponencia/id', ponente.id, 'detalle') %]">Ver</a></li>
+[% END %]
+</ul>
+[% ELSE %]
+<p> No se tienen ponencias previstas a&uacute;n para esta sede</p>
+[% END %]
+    </div>
+<div class="sede-even">
+<h3> Ponencias Propuestas </h3>
+[% IF ponenciasprop.size >= 1 %]
+<ul>
+[% FOREACH ponente  IN ponenciasprop %]
+<li> [% ponente.titulo_ponencia %] <a href="[% c.uri_for('/admin/ponencia/id', ponente.id, 'detalle') %]">Ver</a> </li>
+[% END %]
+</ul>
+[% ELSE %]
+<p> No se tienen ponencias propuestas a&uacute;n para esta sede</p>
+[% END %]
+</div>
+<div class="clear"></div>
+<p> <a href="[% c.uri_for('/admin/ponentes/lista/') _ sede.id %]">Ver detalles de ponencias</a></p>
+</div>
+
+<p><a href="[% c.uri_for(c.controller.action_for('editar'), [sede.id]) %]">Editar datos de Sede</a></p>

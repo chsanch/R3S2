@@ -17,8 +17,8 @@ __PACKAGE__->set_primary_key("usuario_id", "sede_id");
 __PACKAGE__->add_unique_constraint("usuario_sede_id", ["usuario_id", "sede_id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:J/LriO2CEtvEglzpMOS57A
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xpqVhVvrzzbPrNdn3V8aig
 
  __PACKAGE__->belongs_to(usuario => 'R3S2::Schema::Result::Usuario', 'usuario_id');
  __PACKAGE__->belongs_to(sede => 'R3S2::Schema::Result::Sede', 'sede_id');

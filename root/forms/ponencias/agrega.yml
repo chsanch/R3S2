@@ -7,7 +7,8 @@ elements:
    attributes:
     title: Indique su nombre
    constraints:
-    - Required
+    - type: Required
+      message: Indica tus nombres
     
  - type: Text
    name: apellidos
@@ -15,7 +16,8 @@ elements:
    attributes:
     title: Indique sus apellidos
    constraints:
-    - Required
+    - type: Required
+      message: Indica tus apellidos
     
  - type: Text
    name: email
@@ -23,18 +25,22 @@ elements:
    attributes:
     title: Indique su Correo
    constraints:
-    - Required
-    - Email
+    - type: Required
+      message: Indica tu correo
+    - type: Email
+      message: Indica un email valido
     
  - type: Text
    name: twitter
    label: Twitter
+   value: '@'
    attributes:
     title: Indique su cuenta en Twitter (si posee)
  
  - type: Text
    name: url
    label: URL
+   value: 'http://'
    attributes:
     title: Indique su sitio web (si posee)
       
@@ -44,7 +50,9 @@ elements:
    attributes:
     title: Indique el Titulo de la Ponencia
    constraints:
-    - Required
+    - type: Required
+      message: Indica titulo de la ponencia
+      
  - type: Textarea
    name: descripcion_ponencia
    label: Descripcion de la Ponencia
@@ -53,10 +61,12 @@ elements:
     cols: 40
     rows: 6
    constraints:
-    - Required
+    - type: Required
+      message: Describe la ponencia
 
  - type: reCAPTCHA
    name: recaptcha
+   label: Confirma que eres humano
    public_key: 6Lf6qgoAAAAAAKyw17F01gKSOiwMjRDWrOn1mifU
    private_key: 6Lf6qgoAAAAAAB4PIfM12lw-0f9M1aGWX2MAWCXi
    constraint_args:
@@ -65,8 +75,10 @@ elements:
  - type: Submit
    name: submit
    value: Guardar
+   attributes:
+    class: submit
    
-
+auto_constraint_class: constraint_%t
 filter:
  - TrimEdges
  - HTMLEscape

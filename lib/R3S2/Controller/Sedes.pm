@@ -33,6 +33,32 @@ sub lista : Local {
     $c->stash->{template} = 'sedes/lista.tt2';
 }
 
+sub ver : Local {
+    my ( $self, $c, $sede_id ) = @_;
+    
+    # Se busca el registro en la base de datos
+    my $sede =  $c->model('DB::sede')->find($sede_id);
+
+    if (!$sede) {
+        $c->stash->{resultado} = 'Registro no encontrado';
+        $c->go('R3S2::Controller::Root', 'resultado');
+    }
+    
+    $c->stash->{sede} = $sede;
+    $c->stash->{ponencias} = [$c->model('DB::Ponente')->ponencias_aceptadas($sede_id)];
+    $c->stash->{template} = 'sedes/ver.tt2';
+}
+
+sub sede :Chained('/') :PathPart('sede') :Args(1) {
+    my ( $self, $c, $sede_id) = @_;
+
+    my $sede = $c->model('DB::Sede')->find($sede_id);
+    $c->stash->{sede} = $sede;
+    $c->stash->{template} = 'sedes/ver.tt2';
+}
+
+#Administracion
+
 
 sub base :Chained('/admin') :PathPart('sede') :CaptureArgs(0) {
         my ($self, $c) = @_;
@@ -78,29 +104,49 @@ sub agrega :Chained('base') :PathPart('agrega') :Args(0) :FormConfig {
 }
 
 
-sub ver : Local {
-    my ( $self, $c, $sede_id ) = @_;
-    $c->stash->{sede} = $c->model('DB::Sede')->find($sede_id);
-    $c->stash->{template} = 'sedes/ver.tt2';
-}
-
-
-
-sub detalle :Chained('/sede') :PathPart('detalle') :Args(0) {
+sub detalle :Chained('objeto') :PathPart('detalle') :Args(0) {
     my ( $self, $c ) = @_;
 
-    $c->stash->{sede} = $c->model('DB::Sede')->find($c->stash->{sede}->id);
-    $c->stash->{template} = 'sedes/ver.tt2';
+    $c->stash->{sede} = $c->stash->{objeto};
+    my $sede_id = $c->stash->{sede}->id;
+    $c->stash->{ponencias} = [$c->model('DB::Ponente')->ponencias_aceptadas($sede_id)];
+    $c->stash->{ponenciasprop} = [$c->model('DB::Ponente')->ponencias_propuestas($sede_id)];
+    $c->stash->{template} = 'sedes/veradmin.tt2';
 }
 
 
-sub sede :Chained('/') :PathPart('sede') :Args(1) {
-    my ( $self, $c, $sede_id) = @_;
-
-    my $sede = $c->model('DB::Sede')->find($sede_id);
-    $c->stash->{sede} = $sede;
-    $c->stash->{template} = 'sedes/ver.tt2';
+sub editar :Chained('objeto') :PathPart('editar') :Args(0) :FormConfig('sedes/agrega.yml') {
+    my ($self, $c) = @_;
+    my $sede = $c->stash->{objeto};
+    
+    unless ($sede) {
+            $c->flash->{error_msg} = "Registro No Valido";
+            $c->response->redirect($c->uri_for($self->action_for('lista')));
+            $c->detach;
+        }
+    
+    my $form = $c->stash->{form};
+    
+    if ( $form->submitted_and_valid ) {
+        $form->model->update($sede);
+        $c->flash->{status_msg} = 'Registro Modificado';
+        $c->response->redirect($c->uri_for('/admin/sede/id',$sede->id,'detalle'));
+        $c->detach;
+    }
+    else {
+        my @distros;
+        foreach ($c->model('DB::Distro')->all) {
+            push(@distros,[$_->id,$_->nombre])
+        }
+        my $distrosel = $form->get_element({ name => 'distros'});
+        $distrosel->options(\@distros);
+        $form->model->default_values($sede);
+        $c->stash->{template} = 'sedes/agrega.tt2';
+    }
 }
+
+
+
 =head1 AUTHOR
 
 Christian Sánchez

@@ -34,8 +34,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("rol_id", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Az1UOBELzgQK/dcYIiPpyQ
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+PiLTfvbn++bpBXlBo2AJA
 
 __PACKAGE__->has_many( "map_usuario_roles" => "R3S2::Schema::Result::UsuarioRol",'rol_id');
 

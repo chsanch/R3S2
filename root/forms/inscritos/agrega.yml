@@ -7,7 +7,9 @@ elements:
    attributes:
     title: Indique su nombre
    constraints:
-    - Required
+    - type: Required
+      message: Indica tus nombres
+    
     
  - type: Text
    name: apellidos
@@ -15,7 +17,8 @@ elements:
    attributes:
     title: Indique sus apellidos
    constraints:
-    - Required
+    - type: Required
+      message: Indica tus apellidos
     
  - type: Text
    name: email
@@ -23,12 +26,15 @@ elements:
    attributes:
     title: Indique su Correo
    constraints:
-    - Required
-    - Email
+    - type: Required
+      message: Indica tu correo
+    - type: Email
+      message: Indica un email valido
     
  - type: Text
    name: twitter
    label: Twitter
+   value: '@'
    attributes:
     title: Indique su cuenta en Twitter (si posee)
 
@@ -43,7 +49,8 @@ elements:
     - [ 'Portatil', 'Portatil' ]
     - [ 'NetBook', 'NetBook' ]
    constraints:
-    - Required
+    - type: Required
+      message: Indica tipo de computador
  
  - type: Select
    name: tipo_proc
@@ -54,9 +61,10 @@ elements:
     - [ ' ', '--' ]
     - [ 'Pentium I', 'Pentium I' ]
     - [ 'Pentium II', 'Pentium II' ]
-    - [ 'NetBook', 'NetBook' ]
+    - [ 'AMD', 'AMD' ]
    constraints:
-    - Required
+    - type: Required
+      message: Indica tipo de Procesador
     
  - type: Text
    name: cant_ram
@@ -64,7 +72,8 @@ elements:
    attributes:
     title: Indique la cantidad de RAM de su equipo
    constraints:
-    - Required
+    - type: Required
+      message: Indica cantidad de memoria
 
  - type: Text
    name: esp_dd
@@ -72,7 +81,8 @@ elements:
    attributes:
     title: Indique la cantidad de espacio disponible en su disco
    constraints:
-    - Required
+    - type: Required
+      message: Indica cantidad de disco disponible
     
  - type: Select
    name: distro
@@ -80,8 +90,37 @@ elements:
    attributes:
     title: Indique la distribucion que quiere instalar
    constraints:
-    - Required
+    - type: Required
+      message: Indica la distro
 
+ - type: Select
+   name: uso_linux_antes
+   label: Ha usado Linux anteriormente
+   attributes:
+    title: Ha usado Linux anteriormente
+   options:
+    - [ ' ', '--' ]
+    - [ '0', 'No' ]
+    - [ '1', 'Si' ]
+   constraints:
+    - type: Required
+      message: Campo requerido
+      
+ - type: Select
+   name: ccsef
+   label: Como se entero del Flisol
+   attributes:
+    title: Indique como supo del evento
+   options:
+    - [ ' ', '--' ]
+    - [ 'Amigo', 'Amigo' ]
+    - [ 'Web', 'Web' ]
+    - [ 'Radio', 'Radio' ]
+    - [ 'TV', 'TV' ]
+    - [ 'Otro', 'Otro' ]
+   constraints:
+    - type: Required
+      message: Campo requerido
  - type: Textarea
    name: comentarios
    label: Algun Comentario
@@ -91,6 +130,7 @@ elements:
     rows: 6
  - type: reCAPTCHA
    name: recaptcha
+   label: Confirma que eres humano
    public_key: 6Lf6qgoAAAAAAKyw17F01gKSOiwMjRDWrOn1mifU
    private_key: 6Lf6qgoAAAAAAB4PIfM12lw-0f9M1aGWX2MAWCXi
    constraint_args:
@@ -98,9 +138,11 @@ elements:
  
  - type: Submit
    name: submit
-   value: Guardar
-   
+   value: Registrar
+   attributes:
+    class: submit
 
+auto_constraint_class: constraint_%t
 filter:
  - TrimEdges
  - HTMLEscape

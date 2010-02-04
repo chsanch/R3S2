@@ -1,0 +1,19 @@
+[% META title = 'Detalle de Ponencia' -%]
+<h1> Ponencia [% ponencia.titulo_ponencia %] </h1>
+<h2> [% ponencia.sede.ciudad %]</h2>
+<div class="bloqinfo">
+  
+<h2>Ponente:</h2>
+<h3>[% ponencia.nombres %] [% ponencia.apellidos %] </h3>
+<p> Correo: [% ponencia.email %] - Twitter: [% ponencia.twitter %]</p>
+<p> <a href="[% ponencia.url %]">[% ponencia.url %] </a></p>
+
+<h2> Descripci&oacute;n</h2>
+<p> [% ponencia.descripcion_ponencia %] </p>
+<br/>
+[% IF ponencia.aceptada == '0' %]
+<p> <a href="[% c.uri_for(c.controller.action_for('aceptar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Aceptar Ponencia</a></p>
+[% END %]
+</div>
+
+<p> <a href="[% c.uri_for('/admin/ponentes/lista', ponencia.sede.id) %]">Volver a Lista de Ponencias</a></p>

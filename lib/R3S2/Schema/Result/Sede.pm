@@ -36,16 +36,16 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("id_sede", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:8o+S8EpFOB65+8wXr0hI4g
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:MMd0xl31OC9s88XhtRQGjQ
 
 #Relaciones 
 
-__PACKAGE__->has_many("inscritos" => "R3S2::Schema::Result::Inscrito", "id") ;
+__PACKAGE__->has_many("inscritos" => "R3S2::Schema::Result::Inscrito", "sede") ;
 __PACKAGE__->has_many("sede_distros" => "R3S2::Schema::Result::SedeDistro", "sede_id");
 __PACKAGE__->many_to_many(distros => 'sede_distros', 'distro');
 __PACKAGE__->has_many("usuarios" => "R3S2::Schema::Result::UsuarioSede",'sede_id');
-__PACKAGE__->has_many("ponentes" => "R3S2::Schema::Result::Ponente", "id") ;
+__PACKAGE__->has_many("ponentes" => "R3S2::Schema::Result::Ponente", "sede") ;
 
 
 #Localizar las fechas

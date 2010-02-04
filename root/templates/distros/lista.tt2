@@ -4,7 +4,9 @@
 <ul>
 [% FOREACH distro IN distros %]
 
-<li> [% distro.nombre %]
+<li>
+<img src="[% c.uri_for('/static/images/distros/') _ distro.nombre %].png" title="[% distro.nombre %]" />
+[% distro.nombre %]
 <a href="[% c.uri_for(c.controller.action_for('editar'), [distro.id]) %]">editar</a>
 <a href="[% c.uri_for(c.controller.action_for('eliminar'), [distro.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">eliminar</a></li>
 

@@ -1,0 +1,91 @@
+[% META title = 'Lista de Sedes' -%]
+<h1> Ponencias para la sede [% sede.ciudad %] </h1>
+
+[% IF sede.ponentes >= 1 %]
+
+[% IF ponencias.size >= 1 %]
+<h2>Ponencias Aceptadas</h2>
+<table id="tabPon" class="tablesorter">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Descripci&oacute;n</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Acci&oacute;n</th>
+        </tr>
+    </thead>
+    <tbody>
+        [% FOREACH ponencia IN ponencias %]
+        <tr>
+            <td> [% ponencia.titulo_ponencia %] </td>
+            <td> [% ponencia.descripcion_ponencia %] </td>
+            <td> [% ponencia.nombres %] </td>
+            <td> [% ponencia.apellidos %] </td>
+            <td><a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a> - <a href="[% c.uri_for(c.controller.action_for('cancelar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Cancelar</a></td>
+        </tr>
+        [% END %]
+    </tbody>
+</table>
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function() 
+    { 
+        $("#tabPon")
+        .tablesorter(
+            {widthFixed: true,widgets: ['zebra']}
+        )
+    } 
+);
+// ]]>
+</script>
+ [% END %]
+ 
+<br/>
+
+[% IF ponenciasprop.size >= 1 %]
+<h2>Ponencias Inscritas</h2>
+<table id="tabPonIns" class="tablesorter">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Descripci&oacute;n</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        [% FOREACH ponencia IN ponenciasprop %]
+        <tr>
+            <td> [% ponencia.titulo_ponencia %] </td>
+            <td> [% ponencia.descripcion_ponencia %] </td>
+            <td> [% ponencia.nombres %] </td>
+            <td> [% ponencia.apellidos %] </td>
+            <td> <a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a> - <a href="[% c.uri_for(c.controller.action_for('aceptar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Aceptar</a></li>
+ </td>
+        </tr>
+        [% END %]
+    </tbody>
+</table>
+
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function() 
+    { 
+        $("#tabPonIns")
+        .tablesorter(
+            {widthFixed: true,widgets: ['zebra']}
+        )
+    } 
+);
+// ]]>
+</script>
+
+[% END %]
+
+[% ELSE %]
+<p> No hay ponencias registradas</p>
+[% END %]
+
+<p> <a href="[% c.uri_for('/admin/sede/id', sede.id, 'detalle') %]">Volver a Sede</a></p>

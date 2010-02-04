@@ -71,8 +71,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("usuario_id", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-01-29 00:04:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EI8+bcwT61PcRzSkwghJlA
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:EtgHFsaJATp6W6UECtDz9A
 
 #Para cifrar la clave
 __PACKAGE__->add_columns(
