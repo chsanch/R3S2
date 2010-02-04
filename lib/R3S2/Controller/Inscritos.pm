@@ -73,6 +73,7 @@ sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
         foreach ($c->stash->{sede}->sede_distros) {
             push(@distros,[$_->distro->id,$_->distro->nombre])
         }
+        push(@distros,['','No lo se']);
         my $distrosel = $form->get_element({ name => 'distro'});
         $distrosel->options(\@distros);
         $c->stash->{template} = 'inscritos/agrega.tt2';

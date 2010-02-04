@@ -123,7 +123,10 @@ CREATE TABLE inscrito (
     sede integer,
     uso_linux_antes character(1) DEFAULT 0,
     ccsef text,
-    fecha_ins date
+    fecha_ins date,
+    url text,
+    fecha_nac date,
+    ciudad text
 );
 
 
@@ -167,7 +170,10 @@ CREATE TABLE ponente (
     sede integer,
     titulo_ponencia text,
     descripcion_ponencia text,
-    aceptada character(1) DEFAULT 0
+    aceptada character(1) DEFAULT 0,
+    ciudad text,
+    fecha_nac date,
+    organizacion text
 );
 
 
@@ -401,28 +407,28 @@ INSERT INTO distro VALUES (7, 'Arch');
 -- Data for Name: inscrito; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO inscrito VALUES (1, 'Juan', 'Perez', 'juan@perez.com', '@jperez', 'Escritorio', 'Pentium I', '2000', '10000', 'Debian', 'Prueba', 1, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (2, 'Maria', 'Perez', 'maria@perez.com', '@perezm', 'Escritorio', 'Pentium I', '222', '222', 'Debian', 'sssss', 1, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (6, 'Juan', 'Rodriguez', 'j', 's', 'Escritorio', 'Pentium I', 'q', '3', 'Debian', 'w', 4, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (5, 'Andres', 'Lopez', 'ss', 'sss', 'Escritorio', 'Pentium I', '3', '3', 'Debian', 'sssd', 4, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (4, 'f', 's', 'd', 'f', 'Escritorio', 'Pentium I', 'j', 'e', 'Slackware', 'd', 4, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (3, 's', 's', 's', 's', 'Escritorio', 'Pentium I', 's', 's', 'Debian', 's', 4, '0', NULL, NULL);
-INSERT INTO inscrito VALUES (7, 'Pedro', 'Perez', 'juan@perez.com', '@perezj', 'Escritorio', 'Pentium I', '2000', '10GB', '2', 'nada', 1, '0', 'Web', '2010-02-03');
-INSERT INTO inscrito VALUES (8, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '300', '300', '4', 'xx', 3, '0', 'Amigo', '2010-02-03');
-INSERT INTO inscrito VALUES (9, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '500GN', '500GB', '1', NULL, 2, '0', 'Amigo', '2010-02-03');
-INSERT INTO inscrito VALUES (10, 'Jose', 'Perez', 'jose@perz.com', '@jperez', 'Escritorio', 'Pentium II', '200M', '10GB', '1', NULL, 1, '1', 'Otro', '2010-02-04');
+INSERT INTO inscrito VALUES (1, 'Juan', 'Perez', 'juan@perez.com', '@jperez', 'Escritorio', 'Pentium I', '2000', '10000', 'Debian', 'Prueba', 1, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (2, 'Maria', 'Perez', 'maria@perez.com', '@perezm', 'Escritorio', 'Pentium I', '222', '222', 'Debian', 'sssss', 1, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (6, 'Juan', 'Rodriguez', 'j', 's', 'Escritorio', 'Pentium I', 'q', '3', 'Debian', 'w', 4, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (5, 'Andres', 'Lopez', 'ss', 'sss', 'Escritorio', 'Pentium I', '3', '3', 'Debian', 'sssd', 4, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (4, 'f', 's', 'd', 'f', 'Escritorio', 'Pentium I', 'j', 'e', 'Slackware', 'd', 4, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (3, 's', 's', 's', 's', 'Escritorio', 'Pentium I', 's', 's', 'Debian', 's', 4, '0', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (7, 'Pedro', 'Perez', 'juan@perez.com', '@perezj', 'Escritorio', 'Pentium I', '2000', '10GB', '2', 'nada', 1, '0', 'Web', '2010-02-03', NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (8, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '300', '300', '4', 'xx', 3, '0', 'Amigo', '2010-02-03', NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (9, 'Ana', 'Perez', 'ana@perez.com', '@ana', 'Escritorio', 'Pentium I', '500GN', '500GB', '1', NULL, 2, '0', 'Amigo', '2010-02-03', NULL, NULL, NULL);
+INSERT INTO inscrito VALUES (10, 'Jose', 'Perez', 'jose@perz.com', '@jperez', 'Escritorio', 'Pentium II', '200M', '10GB', '1', NULL, 1, '1', 'Otro', '2010-02-04', NULL, NULL, NULL);
 
 
 --
 -- Data for Name: ponente; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO ponente VALUES (16, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve/', '2010-01-29', 4, 'Programando Perl', 'Programando Perl en Linux', '1');
-INSERT INTO ponente VALUES (17, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Otra Charla de Perl', 'Otra Charla Mas de Perl ...', '0');
-INSERT INTO ponente VALUES (19, 'Juan', 'Perez', 'jjms0309@gmail.com', '@jperez', 'jperez.com', '2010-01-29', 4, 'PHP', 'Charla de PHP', '1');
-INSERT INTO ponente VALUES (18, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Ruby', 'Charla de Ruby', '0');
-INSERT INTO ponente VALUES (20, 'Carlos Andres', 'Perez', 'caperez@ad.com', '@gocho88', 'http://gocho88.com', '2010-02-04', 1, 'Programando Java', 'Como programar en Java', '0');
-INSERT INTO ponente VALUES (21, 'Alvaro', 'Fuentes', 'kronox@gmail.com', '@kronox', 'http://kronox.com', '2010-02-04', 3, 'Programando Android', 'Como programar en Android', '1');
+INSERT INTO ponente VALUES (16, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve/', '2010-01-29', 4, 'Programando Perl', 'Programando Perl en Linux', '1', NULL, NULL, NULL);
+INSERT INTO ponente VALUES (17, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Otra Charla de Perl', 'Otra Charla Mas de Perl ...', '0', NULL, NULL, NULL);
+INSERT INTO ponente VALUES (19, 'Juan', 'Perez', 'jjms0309@gmail.com', '@jperez', 'jperez.com', '2010-01-29', 4, 'PHP', 'Charla de PHP', '1', NULL, NULL, NULL);
+INSERT INTO ponente VALUES (18, 'Christian', 'Sanchez', 'csanchez@unplug.org.ve', '@g013m', 'http://blog.g013m.com.ve', '2010-01-29', 4, 'Ruby', 'Charla de Ruby', '0', NULL, NULL, NULL);
+INSERT INTO ponente VALUES (20, 'Carlos Andres', 'Perez', 'caperez@ad.com', '@gocho88', 'http://gocho88.com', '2010-02-04', 1, 'Programando Java', 'Como programar en Java', '0', NULL, NULL, NULL);
+INSERT INTO ponente VALUES (21, 'Alvaro', 'Fuentes', 'kronox@gmail.com', '@kronox', 'http://kronox.com', '2010-02-04', 3, 'Programando Android', 'Como programar en Android', '1', NULL, NULL, NULL);
 
 
 --

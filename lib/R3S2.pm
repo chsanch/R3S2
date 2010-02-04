@@ -14,8 +14,7 @@ use Catalyst::Runtime 5.80;
 #                 directory
 
 use parent qw/Catalyst/;
-use Catalyst qw/-Debug
-                ConfigLoader
+use Catalyst qw/ConfigLoader
                 Static::Simple
                 Authentication
                 Authorization::Roles 
@@ -25,7 +24,7 @@ use Catalyst qw/-Debug
                 I18N
                 Unicode
                 /;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # Configure the application.
 #

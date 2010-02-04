@@ -17,8 +17,8 @@ __PACKAGE__->set_primary_key("usuario_id", "rol_id");
 __PACKAGE__->add_unique_constraint("usuario_rol_id", ["usuario_id", "rol_id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+uZxi6X8CvNl55u18Z6Fnw
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-04 16:13:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:B8o5w+aZMOTEyxCEDaItug
 
  __PACKAGE__->belongs_to(usuario => 'R3S2::Schema::Result::Usuario', 'usuario_id');
  __PACKAGE__->belongs_to(rol => 'R3S2::Schema::Result::Rol', 'rol_id');

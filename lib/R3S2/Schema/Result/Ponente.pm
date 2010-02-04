@@ -70,13 +70,29 @@ __PACKAGE__->add_columns(
   },
   "aceptada",
   { data_type => "character", default_value => 0, is_nullable => 1, size => 1 },
+  "ciudad",
+  {
+    data_type => "text",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
+  "fecha_nac",
+  { data_type => "date", default_value => undef, is_nullable => 1, size => 4 },
+  "organizacion",
+  {
+    data_type => "text",
+    default_value => undef,
+    is_nullable => 1,
+    size => undef,
+  },
 );
 __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("ponente_id", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-03 21:52:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tMZHObsG9mDcGJkQWaF+jQ
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-04 16:13:09
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:JH9BST1GHYxypau4XwrYRQ
 
  __PACKAGE__->resultset_class('R3S2::Schema::ResultSet::Ponente');
  

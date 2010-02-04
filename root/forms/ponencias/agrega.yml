@@ -18,6 +18,19 @@ elements:
    constraints:
     - type: Required
       message: Indica tus apellidos
+
+ - type: Date
+   name: fecha_nac
+   label: Fecha de Nacimiento
+   year:
+    less: 70
+    plus: 0
+    default: 2010
+   attributes:
+    title: Indique sus apellidos
+   constraints:
+    - type: Required
+      message: Indica tu fecha de nacimiento
     
  - type: Text
    name: email
@@ -36,6 +49,18 @@ elements:
    value: '@'
    attributes:
     title: Indique su cuenta en Twitter (si posee)
+
+ - type: Text
+   name: ciudad
+   label: Ciudad de Procedencia
+   attributes:
+    title: Indica la ciudad desde donde nos visitas
+    
+ - type: Text
+   name: organizacion
+   label: Organización a la que perteneces
+   attributes:
+    title: Indica si perteneces a algún LUG, Empresa, Organización. 
  
  - type: Text
    name: url
