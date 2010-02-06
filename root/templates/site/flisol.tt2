@@ -10,7 +10,9 @@
 <p> Puedes inscribirte en cualquiera de las siguientes sedes: </p>
 <ul>
 [% FOREACH sede IN sedes %]
-<li> <h3>[% sede.ciudad %]:</h3> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">[% sede.lugar %] </a>- Fecha: [% sede.fecha_str %]. <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">Inscribirme</a> - <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega/ponente">Proponer una ponencia</a></li>
+<li> <h3>[% sede.ciudad %]:</h3> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">[% sede.lugar %] </a>
+<br/>Fecha: [% sede.fecha_str %].
+<br/><a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">Inscribirme</a> - <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega/ponente">Proponer una ponencia</a></li>
 [% END %]
 </ul>
 </div>

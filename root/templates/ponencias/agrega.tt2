@@ -4,6 +4,6 @@
 <div class="bloqinfo">
 [% form %]
 </div>
-<div class="bloqinfo">
+<div class="sede-odd">
     <p> <a href="[% c.uri_for('/sedes/ver/') _ sede.id %]">Volver a datos de la Sede</p>
 </div>

@@ -1,20 +1,20 @@
 [% META title = 'Detalle Sede' -%]
 <h1> Sede  [% sede.ciudad %] </h1>
 <div class="bloqinfo">
-<h2> Datos de la Sede </h2>
+<h3> Datos de la Sede </h3>
 <p> <strong> Lugar: </strong> [% sede.lugar %] </p>
 <p> <strong> Fecha: </strong> [% sede.fecha_str %] </p>
 </div>
 <div class="bloqinfo">
-<h2> Distros que se van a instalar </h2>
-<ul>
+<h3> Distros que se van a instalar </h3>
+
 [% FOREACH distro  IN sede.sede_distros %]
-<li> <img src="[% c.uri_for('/static/images/distros/') _ distro.distro.nombre %].png" title="[% distro.distro.nombre %]" /></li>
+ <img src="[% c.uri_for('/static/images/distros/') _ distro.distro.nombre %].png" title="[% distro.distro.nombre %]" />
 [% END %]
-</ul>
+
 </div>
-<div class="bloqinfo">
-<h2> Ponencias </h2>
+<div class="ponencias">
+<h3> Ponencias </h3>
 [% IF ponencias.size >= 1 %]
 <ul>
 [% FOREACH ponente  IN ponencias %]
@@ -25,6 +25,9 @@
 <p> No se tienen ponencias previstas a&uacute;n para esta sede</p>
 [% END %]
 </div>
-<div class="bloqinfo">
-<p><a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">Inscribirme para esta sede</a> -- <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega/ponente">Proponer una ponencia</a></p>
+<div class="sede-odd">
+<p><a href="[% c.uri_for('/sede/') _ sede.id %]/agrega">Inscribirme para esta sede</a>
+    <br />
+    <br />
+    <a href="[% c.uri_for('/sede/') _ sede.id %]/agrega/ponente">Proponer una ponencia</a></p>
 </div>
