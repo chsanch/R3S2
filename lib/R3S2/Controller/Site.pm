@@ -29,7 +29,7 @@ sub index :Path :Args(0) {
 
 sub flisol : Local {
     my ( $self, $c ) = @_;
-    $c->stash->{sedes} = [$c->model('DB::Sede')->all];
+    $c->stash->{sedes} = [$c->model('DB::Sede')->search({},{order_by => { -asc=> 'ciudad'}})];
     $c->stash->{template} = 'site/flisol.tt2';
 }
 

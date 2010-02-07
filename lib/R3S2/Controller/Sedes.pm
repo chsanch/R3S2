@@ -29,7 +29,7 @@ sub index :Path :Args(0) {
 
 sub lista : Local {
     my ( $self, $c ) = @_;
-    $c->stash->{sedes} = [$c->model('DB::Sede')->all];
+    $c->stash->{sedes} = [$c->model('DB::Sede')->search({},{order_by => { -asc=> 'ciudad'}})];
     $c->stash->{template} = 'sedes/lista.tt2';
 }
 
