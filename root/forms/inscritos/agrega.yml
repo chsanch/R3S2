@@ -55,7 +55,7 @@ elements:
    label: Twitter
    value: '@'
    attributes:
-    title: Indique su cuenta en Twitter (si posee)
+    title: Indica tu cuenta en Twitter (si posee)
 
  - type: Text
    name: url

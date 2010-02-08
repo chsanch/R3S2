@@ -63,6 +63,8 @@ sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
         my $inscrito = $c->model('DB::Inscrito')->new_result({});
         $inscrito->sede($c->stash->{sede}->id);
         $form->model->update($inscrito);
+        $c->stash->{inscrito} = $inscrito;
+        $c->forward('envia_not');
         $c->flash->{status_msg} = 'Te has Registrado Para esta Sede.';
         $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
         $c->detach;
@@ -79,6 +81,35 @@ sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
         $c->stash->{template} = 'inscritos/agrega.tt2';
     }
 }
+
+=head2 envia_not
+    Envia notificacion por correo cuando se crea un registro
+=cut
+
+
+sub envia_not : Private {
+        my ( $self, $c ) = @_;
+        my $sede = $c->stash->{sede}->ciudad;
+        my $nomins = $c->stash->{inscrito}->nombres;
+        my $apellins = $c->stash->{inscrito}->apellidos;
+        my $mailins = $c->stash->{inscrito}->email;
+        my $subject = "Registro para la sede $sede del Flisol 2010";
+        my $msj = "Se ha creado un registro para $nomins $apellins en la sede $sede.\n
+        Muchas gracias por tu participación\n\n
+        Flisol 2010.
+        ";
+
+        $c->stash->{envia_email} = {
+            to      => $mailins,
+            cc      =>  'registro@flisol.org.ve',
+            bcc     =>  'registro@flisol.org.ve',
+            from    => 'Registro Flisol 2010 <registro@flisol.org.ve>',
+            subject => $subject ,
+            body    => $msj,
+        };
+
+        $c->forward( $c->view('Email') );
+    }
 
 =head1 AUTHOR
 

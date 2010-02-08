@@ -71,6 +71,18 @@ __PACKAGE__->config(
                                 }
                         }
                     };
+__PACKAGE__->config(
+        'View::Email' => {
+            stash_key => 'envia_email',
+            default => {
+                content_type => 'text/plain',
+                charset => 'utf-8'
+            },
+            sender => {
+                mailer => 'SMTP',
+          }
+        }
+    );
     
 # Start the application
 __PACKAGE__->setup();

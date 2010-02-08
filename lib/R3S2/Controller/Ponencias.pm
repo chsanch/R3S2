@@ -35,6 +35,8 @@ sub agrega :Chained('/sede') :PathPart('agrega/ponente') :Args(0) :FormConfig {
         my $ponente = $c->model('DB::Ponente')->new_result({});
         $ponente->sede($c->stash->{sede}->id);
         $form->model->update($ponente);
+        $c->stash->{ponente} = $ponente;
+        $c->forward('envia_not');
         $c->flash->{status_msg} = 'Tu propuesta de ponencia para esta sede ha sido agrega. Muchas Gracias.';
         $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
         $c->detach;
@@ -142,6 +144,37 @@ sub cancelar :Chained('objeto') :PathPart('cancelar') :Args(0) {
         #Redirigimos a lista
         $c->response->redirect($c->uri_for('/admin/ponentes/lista',$sede_id));
 }
+
+=head2 envia_not
+    Envia notificacion por correo cuando se crea un registro
+=cut
+
+sub envia_not : Private {
+        my ( $self, $c ) = @_;
+        my $sede = $c->stash->{sede}->ciudad;
+        my $nompon = $c->stash->{ponente}->nombres;
+        my $apellpon = $c->stash->{ponente}->apellidos;
+        my $titpon = $c->stash->{ponente}->titulo_ponencia;
+        my $mailpon = $c->stash->{ponente}->email;
+        my $subject = "Propuesta de ponencia para la sede $sede del Flisol 2010";
+        my $msj = "Se ha creado un registro para la ponencia $titpon de $nompon $apellpon en la sede $sede.\n
+        Muchas gracias por tu participación, te estaremos avisando sobre el estatus de tu ponencia.\n\n
+        Flisol 2010.
+        ";
+
+        $c->stash->{envia_email} = {
+            to      => $mailpon,
+            cc      =>  'registro@flisol.org.ve',
+            bcc     =>  'registro@flisol.org.ve',
+            from    => 'Registro Flisol 2010 <registro@flisol.org.ve>',
+            subject => $subject ,
+            body    => $msj,
+        };
+
+        $c->forward( $c->view('Email') );
+    }
+
+
 
 =head1 AUTHOR
 
