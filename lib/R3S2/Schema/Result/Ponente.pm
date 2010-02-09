@@ -110,6 +110,6 @@ __PACKAGE__->add_columns(
 );
 
 #UTF-8
-__PACKAGE__->utf8_columns(qw/ciudad nombres apellidos comentarios titulo_ponencia descripcion_ponencia/);
+__PACKAGE__->utf8_columns(qw/ciudad nombres apellidos titulo_ponencia descripcion_ponencia/);
 
 1;
