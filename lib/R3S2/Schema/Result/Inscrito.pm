@@ -135,5 +135,7 @@ __PACKAGE__->add_columns(
     { data_type => 'datetime', set_on_create => 1 },
 );
 
+#UTF-8
+__PACKAGE__->utf8_columns(qw/ciudad nombres apellidos comentarios/);
 
 1;
