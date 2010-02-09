@@ -1,4 +1,6 @@
 ---
+attrs:
+ accept-charset: UTF-8
 indicator: submit
 elements:
  - type: Text

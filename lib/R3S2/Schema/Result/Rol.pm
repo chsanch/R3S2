@@ -5,7 +5,13 @@ use warnings;
 
 use base 'DBIx::Class';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "EncodedColumn", "Core");
+__PACKAGE__->load_components(
+  "InflateColumn::DateTime",
+  "TimeStamp",
+  "EncodedColumn",
+  "UTF8Columns",
+  "Core",
+);
 __PACKAGE__->table("rol");
 __PACKAGE__->add_columns(
   "id",
@@ -34,8 +40,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("rol_id", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-04 16:13:09
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:2Npkj4sWl3AH+Jkgn1dnIw
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-08 19:49:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:VOCPfR4zSLFVdJD5iKzkqg
 
 __PACKAGE__->has_many( "map_usuario_roles" => "R3S2::Schema::Result::UsuarioRol",'rol_id');
 

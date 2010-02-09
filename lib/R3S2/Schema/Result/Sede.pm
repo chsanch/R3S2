@@ -5,7 +5,13 @@ use warnings;
 
 use base 'DBIx::Class';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "EncodedColumn", "Core");
+__PACKAGE__->load_components(
+  "InflateColumn::DateTime",
+  "TimeStamp",
+  "EncodedColumn",
+  "UTF8Columns",
+  "Core",
+);
 __PACKAGE__->table("sede");
 __PACKAGE__->add_columns(
   "id",
@@ -36,8 +42,8 @@ __PACKAGE__->set_primary_key("id");
 __PACKAGE__->add_unique_constraint("id_sede", ["id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-04 16:13:09
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6U7XPYVd31xsmndVFLN3sA
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-08 19:49:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9bamXOkn4CbM2U1EVaiu+Q
 
 #Relaciones 
 

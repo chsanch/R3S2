@@ -2,3 +2,4 @@ r3s2 is the small-sized registration system for any-sized events. It's developed
 This is the very first version of the project.
 
  sudo aptitude install libdbix-class-encodedcolumn-perl libdbix-class-timestamp-perl
+usar libcatalyst-modules-perl 0.37 por un problema con C::V::Email (usar version >=0.23)

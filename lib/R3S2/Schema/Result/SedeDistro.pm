@@ -5,7 +5,13 @@ use warnings;
 
 use base 'DBIx::Class';
 
-__PACKAGE__->load_components("InflateColumn::DateTime", "TimeStamp", "EncodedColumn", "Core");
+__PACKAGE__->load_components(
+  "InflateColumn::DateTime",
+  "TimeStamp",
+  "EncodedColumn",
+  "UTF8Columns",
+  "Core",
+);
 __PACKAGE__->table("sede_distro");
 __PACKAGE__->add_columns(
   "sede_id",
@@ -17,8 +23,8 @@ __PACKAGE__->set_primary_key("sede_id", "distro_id");
 __PACKAGE__->add_unique_constraint("sede_distro_id", ["sede_id", "distro_id"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-04 16:13:09
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yO48FQ/zSumxzGr7UXUcXg
+# Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-08 19:49:58
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:W/TyLQ6j9sIp0iwAC71P+g
 
  __PACKAGE__->belongs_to(sede => 'R3S2::Schema::Result::Sede', 'sede_id');
  __PACKAGE__->belongs_to(distro => 'R3S2::Schema::Result::Distro', 'distro_id');

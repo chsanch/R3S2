@@ -83,6 +83,16 @@ __PACKAGE__->config(
           }
         }
     );
+
+__PACKAGE__->config({
+        'Controller::HTML::FormFu' => {
+            constructor => {
+                tt_args => {
+                    ENCODING => 'UTF-8',
+                },
+            },
+        },
+    });
     
 # Start the application
 __PACKAGE__->setup();
