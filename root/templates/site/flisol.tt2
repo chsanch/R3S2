@@ -1,9 +1,11 @@
 [% META title = 'Flisol 2010' -%]
 <div class="bloqinfo">
-<p>
-<strong>&iquest;Pretendes ir a FLISoL  2010 este pr&oacute;ximo 24 de Abril? &iquest;Te has decidido por el software libre? &iexcl;Perfecto! Pues aqu&iacute; una gu&iacute;a con las recomendaciones que debes seguir:</strong>
-</p>
-<p>En el FLISoL 2010 encontrar&aacute;s entusiastas y profesionales que est&aacute;n dispuestos a ayudarte en tu traspaso al software libre. Como toda nueva experiencia, uno suele tener cierta incertidumbre, pero no hay nada que temer. Mucha gente cree que UNA PC es algo MUY MUY serio y que como en Latinoam&eacute;rica, generalmente la han pagado algo cara, temen por su seguridad!</p>
+<p>El <strong>Festival Latinoamericano de Instalaci&oacute;n de Software Libre (FLISoL)</strong> es el evento de difusi&oacute;n de Software Libre m&aacute;s grande en Latinoam&eacute;rica, teniendo como objetivo primordial promover el uso del software libre, dando a conocer al p&uacute;blico en general su filosof&iacute;a, alcances, avances y desarrollo.</p>
+
+<p><strong>Diversas ciudades de Venezuela estar6aacute;n dando sede a este evento. &iexcl;Selecciona la sede de tu preferencia e inscr&iacute;bete!</strong></p>
+
+Recuerda obtener mas informaci&oacute;n en <a href="http://flisol.org.ve">http://flisol.org.ve</a>
+
 </div>
 <div class="bloqinfo">
 <h1> Sedes </h1>
@@ -16,10 +18,5 @@
 [% END %]
 </ul>
 
-<p>El <strong>Festival Latinoamericano de Instalaci&oacute;n de Software Libre (FLISoL)</strong> es el evento de difusi&oacute;n de Software Libre m&aacute;s grande en Latinoam&eacute;rica, teniendo como objetivo primordial promover el uso del software libre, dando a conocer al p&uacute;blico en general su filosof&iacute;a, alcances, avances y desarrollo.</p>
-
-<p><strong>Diversas ciudades de Venezuela estar6aacute;n dando sede a este evento. &iexcl;Selecciona la sede de tu preferencia e inscr&iacute;bete!</strong></p>
-
-Recuerda obtener mas informaci&oacute;n en <a href="http://flisol.org.ve">http://flisol.org.ve</a>
 
 </div>
