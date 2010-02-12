@@ -1,5 +1,12 @@
 r3s2 is the small-sized registration system for any-sized events. It's developed in Perl, under the Catalyst MVC Framework. It's based in the r3s project, this is the r3s reloaded ;) 
 This is the very first version of the project.
 
- sudo aptitude install libdbix-class-encodedcolumn-perl libdbix-class-timestamp-perl
-usar libcatalyst-modules-perl 0.37 por un problema con C::V::Email (usar version >=0.23)
+You need at least Catalyst 5.80013, if you are using Debian just install it from Squeeze repositories ( you can add this repos in your /etc/apt/sources.list if you are using Lenny, just add the "-t squeeze" in the command below):
+
+* sudo aptitude install libcatalyst-perl libcatalyst-modules-perl libcatalyst-modules-extra-perl
+
+And install the other modules needed:
+
+* sudo aptitude install libdbix-class-encodedcolumn-perl libdbix-class-timestamp-perl libhtml-formfu-perl libhtml-formfu-model-dbic-perl 
+
+There is a bug with Catalyst::View::Email < 0.21, you need to use the latest version 0.23 ( at this moment), this module comes in the debian package libcatalyst-modules-perl 0.37, you can grab it from unstable's repositories and install it manually. This is important, because if you don't do this, the application doesn't work at least you deactivate the option to send mail when a record is create in the controllers: Inscritos and Ponencias.

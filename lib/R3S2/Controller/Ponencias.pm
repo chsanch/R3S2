@@ -37,7 +37,7 @@ sub agrega :Chained('/sede') :PathPart('agrega/ponente') :Args(0) :FormConfig {
         $form->model->update($ponente);
         $c->stash->{ponente} = $ponente;
         $c->forward('envia_not');
-        $c->flash->{status_msg} = 'Tu propuesta de ponencia para esta sede ha sido agrega. Muchas Gracias.';
+        $c->flash->{status_msg} = 'Tu propuesta de ponencia para esta sede ha sido agregada. Muchas Gracias.';
         $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
         $c->detach;
     }
@@ -164,8 +164,8 @@ sub envia_not : Private {
 
         $c->stash->{envia_email} = {
             to      => $mailpon,
-            cc      =>  'registro@flisol.org.ve',
-            bcc     =>  'registro@flisol.org.ve',
+            cc      =>  join ',', qw/registro@flisol.org.ve flisolcaracas@gmail.com/,
+            bcc     =>  'flisolcaracas@gmail.com',
             from    => 'Registro Flisol 2010 <registro@flisol.org.ve>',
             subject => $subject ,
             body    => $msj,

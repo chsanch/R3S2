@@ -101,7 +101,7 @@ sub envia_not : Private {
 
         $c->stash->{envia_email} = {
             to      => $mailins,
-            cc      =>  'registro@flisol.org.ve',
+            cc      =>   join ',', qw/registro@flisol.org.ve flisolcaracas@gmail.com/,
             bcc     =>  'flisolcaracas@gmail.com',
             from    => 'Registro Flisol 2010 <registro@flisol.org.ve>',
             subject => $subject ,
