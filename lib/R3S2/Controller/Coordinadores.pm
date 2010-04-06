@@ -161,6 +161,7 @@ sub password :Chained('objeto') :PathPart('password') :Args(0) :FormConfig('coor
         $c->detach;
     }
     else {
+        $c->stash->{username} = $usuario->username;
         $c->stash->{template} = 'coordinadores/password.tt2';
     }
 }

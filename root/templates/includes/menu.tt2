@@ -12,6 +12,7 @@
         <li> <a href="[% c.uri_for('/admin/ponentes') %]">Ponentes</a></li>
         <li> <a href="[% c.uri_for('/admin/coordinadores/lista') %]">Coordinadores</a></li>
         <li> <a href="[% c.uri_for('/admin/distros/lista') %]">Distros</a></li>
+        <li> <a href="[% c.uri_for('/admin/usuarios/perfil') %]">Datos Cuenta</a></li>
     [% END %]
     
         <li> <a href="[% c.uri_for('/logout') %]">Cerrar Sesi&oacute;n</a></li>
