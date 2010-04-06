@@ -80,15 +80,18 @@ sub objeto :Chained('base') :PathPart('id') :CaptureArgs(1) {
         my $ponencia = $c->stash->{resultset}->find($id);
         $c->stash( objeto => $ponencia );
         
-        my $sede_id;
         if($c->check_user_roles('coordinador')){
-           $sede_id = $c->user->sedes->first->id;
-           
+           my $sede_id = $c->user->sedes->first->id;
+           if ((!$c->stash->{objeto}) || ( $ponencia->sede->id != $sede_id )) {
+                $c->stash->{resultado} = "Registro no encontrado";
+                $c->go('R3S2::Controller::Root', 'resultado');
+            }
         }
-    
-        if ((!$c->stash->{objeto}) || ( $ponencia->sede->id != $sede_id )) {
-            $c->stash->{resultado} = "Registro no encontrado";
-            $c->go('R3S2::Controller::Root', 'resultado');
+        if($c->check_user_roles('admin')){
+            if (!$c->stash->{objeto}) {
+                $c->stash->{resultado} = "Registro no encontrado";
+                $c->go('R3S2::Controller::Root', 'resultado');
+            }
         }
     
 }
