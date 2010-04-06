@@ -1,0 +1,9 @@
+[% META title = 'Datos del Usuario' -%]
+<h1> Datos del Coordinador </h1>
+[% IF username %]
+<p> Editando datos del usuario: <strong>[% username %]</strong></p>
+[% END %]
+<div class="bloqinfo">
+[% form %]
+</div>
+<p><a href="[% c.uri_for('/admin/coordinadores/lista')%]">Volver</a></p>

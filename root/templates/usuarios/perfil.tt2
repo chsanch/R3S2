@@ -1,0 +1,11 @@
+[% META title = 'Mi Perfil' -%]
+<h1> Mi Perfil </h1>
+<div class="bloqinfo">
+  <p><strong>Nombre:</strong> [% c.user.nombre %] [% c.user.apellido %]</p>
+  <p><strong>Email:</strong> [% c.user.email %]</p>
+  <p><strong>Twitter:</strong> [% c.user.twitter %]</p>
+  <p><strong>Sitio Web:</strong> [% c.user.website %]</p>
+</div>
+<p><a href="[% c.uri_for('/admin/coordinador/id/') _ c.user.id %]/editar">Editar Mis Datos</a> </p>
+<p><a href="[% c.uri_for('/admin/coordinador/id/') _ c.user.id %]/password">Cambiar mi Password</a> </p>
+<p> <a href="[% c.uri_for('/admin') %]">Volver</a></p>

@@ -1,0 +1,96 @@
+---
+attrs:
+ accept-charset: UTF-8
+indicator: submit
+elements:
+ - type: Text
+   name: username
+   label: Login
+   attributes:
+    title: Indique el nombre para iniciar sesion
+   constraints:
+    - type: Required
+      message: Indica el login
+      
+ - type: Password
+   name: password
+   label: Password
+   attributes:
+    title: Indique el password para este usuario
+   constraints:
+    - type: Required
+      message: Indica el password
+    - type: Equal
+      others: repeat_password
+
+ - type: Password
+   name: repeat_password
+   label: Repite el Password
+   attributes:
+    title: Indique nuevamente el password para este usuario
+   constraints:
+    - type: Required
+      message: Indica nuevamente el password
+
+ - type: Text
+   name: nombre
+   label: Nombre
+   attributes:
+    title: Indique el nombre
+   constraints:
+    - type: Required
+      message: Indica tus nombres
+    
+ - type: Text
+   name: apellido
+   label: Apellido
+   attributes:
+    title: Indique el apellidos
+   constraints:
+    - type: Required
+      message: Indica tus apellidos
+
+ - type: Text
+   name: email
+   label: Correo Electrónico
+   attributes:
+    title: Indique su Correo
+   constraints:
+    - type: Required
+      message: Indica tu correo
+    - type: Email
+      message: Indica un email valido
+    
+ - type: Text
+   name: twitter
+   label: Twitter
+   value: '@'
+   attributes:
+    title: Indique su cuenta en Twitter (si posee)
+
+ - type: Text
+   name: url
+   label: URL
+   value: 'http://'
+   attributes:
+    title: Indique su sitio web (si posee)
+    
+ - type: Select
+   name: sedes
+   label: Sede que va a coordinar
+   attributes:
+    title: Indique la sede que coordinara este usuario
+   constraints:
+    - type: Required
+      message: Indica la sede
+ 
+ - type: Submit
+   name: submit
+   value: Registrar
+   attributes:
+    class: submit
+
+auto_constraint_class: constraint_%t
+filter:
+ - TrimEdges
+ - HTMLEscape

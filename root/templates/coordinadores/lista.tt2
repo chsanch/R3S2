@@ -1,0 +1,60 @@
+[% META title = 'Lista de Sedes' -%]
+<h1> Coordinadores registrados </h1>
+<p><a href="[% c.uri_for('/admin/coordinador/agrega') %]">Agregar Nuevo Coordinador</a>
+
+
+<table id="tabIns" class="tablesorter">
+    <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Twitter.</th>
+            <th>Sede</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+    [% FOREACH coord IN coordinadores %]
+       <tr>
+            <td> [% coord.usuario.nombre %]</td>
+            <td> [% coord.usuario.apellido %] </td>
+            <td> [% coord.usuario.username %] </td>
+            <td> [% coord.usuario.email %] </td>
+            <td> [% coord.usuario.twitter %] </td>
+            <td> [% coord.usuario.sedes.ciudad %] </td>
+            <td> <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/editar">Editar</a> - <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/password">C. Passwd.</a> </td>
+       </tr>
+    [% END %]
+    </tbody>
+</table>
+<div id="pager" class="pager">
+        <form>
+                <img src="[% c.uri_for('/static/images/table') %]/first.png" class="first"/>
+                <img src="[% c.uri_for('/static/images/table') %]/prev.png" class="prev"/>
+                <input type="text" class="pagedisplay"/>
+                <img src="[% c.uri_for('/static/images/table') %]/next.png" class="next"/>
+                <img src="[% c.uri_for('/static/images/table') %]/last.png" class="last"/>
+                <select class="pagesize">
+                        <option value="10">10</option>
+                        <option selected="selected" value="20">20</option>
+                        <option value="30">30</option>
+                        <option  value="40">40</option>
+                </select>
+        </form>
+</div>
+
+<script type="text/javascript">
+// <![CDATA[
+$(document).ready(function() 
+    { 
+        $("#tabIns")
+        .tablesorter(
+            {widthFixed: true,widgets: ['zebra']}
+        )
+        .tablesorterPager({container: $("#pager")}); 
+    } 
+);
+// ]]>
+</script>
