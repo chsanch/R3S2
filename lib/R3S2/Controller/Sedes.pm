@@ -71,7 +71,7 @@ sub base :Chained('/admin') :PathPart('sede') :CaptureArgs(0) {
 sub objeto :Chained('base') :PathPart('id') :CaptureArgs(1) {
         #obtenemos el id del objeto
         my ($self, $c, $id) = @_;
-    
+        if ($c->check_user_roles('coordinador')) { $id = $c->user->sedes->first->id; }
         # Se busca el registro en la base de datos
         $c->stash(objeto => $c->stash->{resultset}->find($id));
     

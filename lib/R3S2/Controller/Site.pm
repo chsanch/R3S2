@@ -50,9 +50,8 @@ sub inicio :Chained('/admin') :PathPart('inicio') :Args(0) {
         $c->stash->{template} = 'site/admin.tt2';
     }
     if ($c->check_user_roles('coordinador')) {
-        my $resultado = "Eres coordinador";
-        $c->stash->{resultado} = $resultado;
-        $c->stash->{template} = 'resultado.tt2';
+        my $sede_id = $c->user->sedes->first->id;
+        $c->response->redirect($c->uri_for('/admin/sede/id', $sede_id,'detalle'));
     }
 }
 

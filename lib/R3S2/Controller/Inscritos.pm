@@ -38,7 +38,7 @@ sub inscritos :Chained('/admin') :PathPart('inscritos') :Args(0) {
         $c->detach;
     }
     if($c->check_user_roles('coordinador')){
-        my $sede_id = $c->user->sedes->first->sede_id;
+        my $sede_id = $c->user->sedes->first->id;
         $c->response->redirect($c->uri_for('/admin/inscritos/lista', $sede_id));
     }
     
@@ -48,9 +48,11 @@ sub inscritos :Chained('/admin') :PathPart('inscritos') :Args(0) {
 sub lista :Chained('/admin') :PathPart('inscritos/lista') :Args(1) {
     my ( $self, $c, $sede_id) = @_;
     
-        $c->stash->{sede} = $c->model('DB::Sede')->find($sede_id);
-        $c->stash->{template} = 'inscritos/listasede.tt2';
-        $c->detach;
+    if ($c->check_user_roles('coordinador')) { $sede_id = $c->user->sedes->first->id; }   
+        
+    $c->stash->{sede} = $c->model('DB::Sede')->find($sede_id);
+    $c->stash->{template} = 'inscritos/listasede.tt2';
+    $c->detach;
     
 }
 

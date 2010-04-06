@@ -92,10 +92,16 @@ __PACKAGE__->add_columns(
         },
     );
 
-
+#Relaciones
 __PACKAGE__->has_many( "map_usuario_roles" => "R3S2::Schema::Result::UsuarioRol",'usuario_id');
-__PACKAGE__->has_many("sedes" => "R3S2::Schema::Result::UsuarioSede",'usuario_id');
+#__PACKAGE__->has_many("sedes" => "R3S2::Schema::Result::UsuarioSede",'usuario_id');
+
+__PACKAGE__->has_many("sede_usuarios" => "R3S2::Schema::Result::UsuarioSede", "usuario_id");
+__PACKAGE__->many_to_many(sedes => 'sede_usuarios', 'sede');
 
 __PACKAGE__->many_to_many(roles => 'map_usuario_roles', 'rol');
+
+#Pesadilla con UTF-8 
+__PACKAGE__->utf8_columns(qw/nombre apellido/);
 
 1;

@@ -8,7 +8,8 @@
         <script type="text/javascript" src="[% c.uri_for('/static/js/jquery.min.js') %] "></script> 
 	<script type="text/javascript" src="[% c.uri_for('/static/js/jquery.tablesorter.min.js') %] "></script> 
 	<script type="text/javascript" src="[% c.uri_for('/static/js/jquery.tablesorter.pager.js')%] "></script>
-        <script type="text/javascript" src="[% c.uri_for('/static/js/jquery.metadata.js') %] "></script> 
+        <script type="text/javascript" src="[% c.uri_for('/static/js/jquery.metadata.js') %] "></script>
+		<script type="text/javascript" src="[% c.uri_for('/static/js/jquery.jtwitter.min.js') %] "></script> 
         <title>[% c.config.name %] :: [% template.title %]</title>
     </head>
 
@@ -43,6 +44,7 @@
                         <div class="yui-u ">
                             <div id="secundario">
                                 [% PROCESS includes/menu.tt2 %]
+								[%# PROCESS includes/twitinfo.tt2 %]
                             </div>
                         </div>
                         <div style="clear: both;"> </div>
@@ -53,7 +55,7 @@
             
             <div id="pie"> [% c.config.name %] <img src="[% c.uri_for('/static/images/btn_88x31_powered.png') %]" />
             </div>
-            
+
         </div>
     </body>
 </html>

@@ -77,10 +77,17 @@ sub objeto :Chained('base') :PathPart('id') :CaptureArgs(1) {
         my ($self, $c, $id) = @_;
     
         # Se busca el registro en la base de datos
-        $c->stash(objeto => $c->stash->{resultset}->find($id));
+        my $ponencia = $c->stash->{resultset}->find($id);
+        $c->stash( objeto => $ponencia );
+        
+        my $sede_id;
+        if($c->check_user_roles('coordinador')){
+           $sede_id = $c->user->sedes->first->id;
+           
+        }
     
-        if (!$c->stash->{objeto}) {
-            $c->stash->{resultado} = 'Registro no encontrado';
+        if ((!$c->stash->{objeto}) || ( $ponencia->sede->id != $sede_id )) {
+            $c->stash->{resultado} = "Registro no encontrado";
             $c->go('R3S2::Controller::Root', 'resultado');
         }
     
@@ -92,11 +99,16 @@ sub ponentes :Chained('/admin') :PathPart('ponentes') :Args(0) {
         $c->stash->{sedes} = [$c->model('DB::Sede')->all];
         $c->stash->{template} = 'ponencias/lista.tt2';
     }
+    if($c->check_user_roles('coordinador')){
+        my $sede_id = $c->user->sedes->first->id;
+        $c->response->redirect($c->uri_for('/admin/ponentes/lista', $sede_id));
+    }
     
 }
 
 sub lista :Chained('/admin') :PathPart('ponentes/lista') :Args(1) {
     my ( $self, $c, $sede_id) = @_;
+        if ($c->check_user_roles('coordinador')) { $sede_id = $c->user->sedes->first->id; } 
         $c->stash->{sede} = $c->model('DB::Sede')->find($sede_id);
         $c->stash->{ponencias} = [$c->model('DB::Ponente')->ponencias_aceptadas($sede_id)];
         $c->stash->{ponenciasprop} = [$c->model('DB::Ponente')->ponencias_propuestas($sede_id)];

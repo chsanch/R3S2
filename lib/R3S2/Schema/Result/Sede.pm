@@ -50,7 +50,10 @@ __PACKAGE__->add_unique_constraint("id_sede", ["id"]);
 __PACKAGE__->has_many("inscritos" => "R3S2::Schema::Result::Inscrito", "sede") ;
 __PACKAGE__->has_many("sede_distros" => "R3S2::Schema::Result::SedeDistro", "sede_id");
 __PACKAGE__->many_to_many(distros => 'sede_distros', 'distro');
-__PACKAGE__->has_many("usuarios" => "R3S2::Schema::Result::UsuarioSede",'sede_id');
+
+__PACKAGE__->has_many("sede_usuarios" => "R3S2::Schema::Result::UsuarioSede",'sede_id');
+__PACKAGE__->many_to_many(usuarios => 'sede_usuarios', 'usuario');
+
 __PACKAGE__->has_many("ponentes" => "R3S2::Schema::Result::Ponente", "sede") ;
 #UTF8
 __PACKAGE__->utf8_columns(qw/ciudad lugar/);
