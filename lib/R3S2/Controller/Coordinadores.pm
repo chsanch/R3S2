@@ -73,25 +73,24 @@ sub agrega :Chained('base') :PathPart('agrega') :Args(0) :FormConfig {
             my $usuario = $c->model('DB::Usuario')->new_result({});
             $form->model->update($usuario);
             my $nombre = $usuario->nombre ." ". $usuario->apellido;
-            #my $sedeus = $c->req->param('sede');
-            #se crea la relacion entre la sede y el usuario
-            #$usuario->add_to_sedes( {sede_id => $sedeus} );
-            #se crea la relacion entre el rol y el usuario
             $usuario->add_to_map_usuario_roles( {rol_id => '2'} );
-            #$c->response->redirect($c->uri_for($self->action_for('index')));
-            #$c->detach;
-            $c->stash->{status_msg} = "Usuario Creado $nombre ";
-            $c->stash->{resultado} = "Registro creado para el usuario $nombre";
-            $c->go('R3S2::Controller::Root', 'resultado');
+            #Mensaje de estatus
+            $c->flash->{status_msg} = "Usuario Creado $nombre ";
+            #Redirigimos a lista
+            $c->response->redirect($c->uri_for($self->action_for('lista')));
+            $c->detach;
         }
         else {
+            #se buscan las sedes para mostrarlas en el formulario
             my @sedes;
             push(@sedes,['','---']);
             foreach ($c->model('DB::Sede')->search({},{order_by => { -asc=> 'ciudad'}})) {
                 push(@sedes,[$_->id,$_->ciudad])
             }
+            #se agregan las sedes al elemento en el formulario
             my $sedessel = $form->get_element({ name => 'sedes'});
             $sedessel->options(\@sedes);
+            
             $c->stash->{template} = 'coordinadores/agrega.tt2';
         }
         
@@ -142,6 +141,27 @@ sub editar :Chained('objeto') :PathPart('editar') :Args(0) :FormConfig('coordina
     }
 }
 
+sub eliminar :Chained('objeto') :PathPart('eliminar') :Args(0) {
+    my ($self, $c) = @_;
+        
+    if ($c->check_user_roles('coordinador')) {
+        $c->response->redirect($c->uri_for('/admin/usuarios/perfil'));
+    }
+    
+    if ($c->check_user_roles('admin')) {
+        
+        # Se borra el registro que tenemos en "objeto"
+        $c->stash->{objeto}->delete_related('map_usuario_roles');
+        $c->stash->{objeto}->delete_related('sede_usuarios');
+        $c->stash->{objeto}->delete;        
+    
+        # Mensaje de confirmación
+        $c->flash->{status_msg} = "Se elimin&oacute; el registro.";
+    
+        #Redirigimos a lista
+        $c->response->redirect($c->uri_for($self->action_for('lista')));
+    }
+}
 
 sub password :Chained('objeto') :PathPart('password') :Args(0) :FormConfig('coordinadores/password.yml') {
     my ($self, $c) = @_;

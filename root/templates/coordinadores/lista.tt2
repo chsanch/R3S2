@@ -10,7 +10,6 @@
             <th>Apellidos</th>
             <th>Login</th>
             <th>Email</th>
-            <th>Twitter.</th>
             <th>Sede</th>
             <th>Accion</th>
         </tr>
@@ -22,9 +21,11 @@
             <td> [% coord.usuario.apellido %] </td>
             <td> [% coord.usuario.username %] </td>
             <td> [% coord.usuario.email %] </td>
-            <td> [% coord.usuario.twitter %] </td>
             <td> [% coord.usuario.sedes.ciudad %] </td>
-            <td> <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/editar">Editar</a> - <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/password">C. Passwd.</a> </td>
+            <td> <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/editar">Editar</a> -
+                <a href="[% c.uri_for('/admin/coordinador/id/') _ coord.usuario.id %]/password">C. Passwd.</a> -
+                <a href="[% c.uri_for(c.controller.action_for('eliminar'), [coord.usuario.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Eliminar</a>
+            </td>
        </tr>
     [% END %]
     </tbody>

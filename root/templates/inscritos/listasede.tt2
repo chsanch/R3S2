@@ -9,7 +9,8 @@
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Email</th>
-            <th>Twitter.</th>
+            <th>Twitter</th>
+            <th>Accion</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
             <td> [% inscrito.apellidos %] </td>
             <td> [% inscrito.email %] </td>
             <td> [% inscrito.twitter %] </td>
+            <td><a href="[% c.uri_for(c.controller.action_for('eliminar'), [ inscrito.id ]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Eliminar</a></td>
        </tr>
     [% END %]
     </tbody>

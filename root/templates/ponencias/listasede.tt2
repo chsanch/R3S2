@@ -22,7 +22,9 @@
             <td> [% ponencia.descripcion_ponencia %] </td>
             <td> [% ponencia.nombres %] </td>
             <td> [% ponencia.apellidos %] </td>
-            <td><a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a> - <a href="[% c.uri_for(c.controller.action_for('cancelar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Cancelar</a></td>
+            <td><a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a>
+                - <a href="[% c.uri_for(c.controller.action_for('cancelar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Cancelar</a>
+            </td>
         </tr>
         [% END %]
     </tbody>
@@ -62,8 +64,10 @@ $(document).ready(function()
             <td> [% ponencia.descripcion_ponencia %] </td>
             <td> [% ponencia.nombres %] </td>
             <td> [% ponencia.apellidos %] </td>
-            <td> <a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a> - <a href="[% c.uri_for(c.controller.action_for('aceptar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Aceptar</a></li>
- </td>
+            <td> <a href="[% c.uri_for('/admin/ponencia/id', ponencia.id, 'detalle') %]">Ver</a>
+            - <a href="[% c.uri_for(c.controller.action_for('aceptar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Aceptar</a>
+            - <a href="[% c.uri_for(c.controller.action_for('eliminar'), [ponencia.id]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Eliminar</a>
+            </td>
         </tr>
         [% END %]
     </tbody>

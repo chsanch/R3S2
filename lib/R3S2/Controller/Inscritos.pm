@@ -30,6 +30,68 @@ sub index :Path :Args(0) {
 }
 
 
+sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
+    my ( $self, $c ) = @_;
+
+    my $form = $c->stash->{form};
+    if ( $form->submitted_and_valid ) {
+        my $inscrito = $c->model('DB::Inscrito')->new_result({});
+        $inscrito->sede($c->stash->{sede}->id);
+        $form->model->update($inscrito);
+        $c->stash->{inscrito} = $inscrito;
+        $c->forward('envia_not');
+        $c->flash->{status_msg} = 'Te has Registrado Para esta Sede.';
+        $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
+        $c->detach;
+    }
+    else {
+        my @distros;
+        push(@distros,['','---']);
+        foreach ($c->stash->{sede}->sede_distros) {
+            push(@distros,[$_->distro->id,$_->distro->nombre])
+        }
+        push(@distros,['','No lo se']);
+        my $distrosel = $form->get_element({ name => 'distro'});
+        $distrosel->options(\@distros);
+        $c->stash->{template} = 'inscritos/agrega.tt2';
+    }
+}
+
+#Administracion
+sub base :Chained('/admin') :PathPart('inscrito') :CaptureArgs(0) {
+        my ($self, $c) = @_;
+    
+        # Almacenamos el objeto para que esté disponible en otros métodos
+        $c->stash->{resultset} = $c->model('DB::Inscrito');
+    
+}
+
+sub objeto :Chained('base') :PathPart('id') :CaptureArgs(1) {
+        #obtenemos el id del objeto
+        my ($self, $c, $id) = @_;
+    
+        # Se busca el registro en la base de datos
+        my $ponencia = $c->stash->{resultset}->find($id);
+        $c->stash( objeto => $ponencia );
+        
+        if($c->check_user_roles('coordinador')){
+           my $sede_id = $c->user->sedes->first->id;
+           if ((!$c->stash->{objeto}) || ( $ponencia->sede->id != $sede_id )) {
+                $c->stash->{resultado} = "Registro no encontrado";
+                $c->go('R3S2::Controller::Root', 'resultado');
+            }
+        }
+        if($c->check_user_roles('admin')){
+            if (!$c->stash->{objeto}) {
+                $c->stash->{resultado} = "Registro no encontrado";
+                $c->go('R3S2::Controller::Root', 'resultado');
+            }
+        }
+    
+}
+
+
+
 sub inscritos :Chained('/admin') :PathPart('inscritos') :Args(0) {
     my ( $self, $c ) = @_;
     if ($c->check_user_roles('admin')) {
@@ -57,32 +119,23 @@ sub lista :Chained('/admin') :PathPart('inscritos/lista') :Args(1) {
 }
 
 
-sub agrega :Chained('/sede') :PathPart('agrega') :Args(0) :FormConfig {
-    my ( $self, $c ) = @_;
+sub eliminar :Chained('objeto') :PathPart('eliminar') :Args(0) {
+    my ($self, $c) = @_;
 
-    my $form = $c->stash->{form};
-    if ( $form->submitted_and_valid ) {
-        my $inscrito = $c->model('DB::Inscrito')->new_result({});
-        $inscrito->sede($c->stash->{sede}->id);
-        $form->model->update($inscrito);
-        $c->stash->{inscrito} = $inscrito;
-        $c->forward('envia_not');
-        $c->flash->{status_msg} = 'Te has Registrado Para esta Sede.';
-        $c->response->redirect($c->uri_for('/sedes/ver',$c->stash->{sede}->id));
-        $c->detach;
-    }
-    else {
-        my @distros;
-        push(@distros,['','---']);
-        foreach ($c->stash->{sede}->sede_distros) {
-            push(@distros,[$_->distro->id,$_->distro->nombre])
-        }
-        push(@distros,['','No lo se']);
-        my $distrosel = $form->get_element({ name => 'distro'});
-        $distrosel->options(\@distros);
-        $c->stash->{template} = 'inscritos/agrega.tt2';
-    }
+        # obtenemos el id de la sede 
+        my $sede_id = $c->stash->{objeto}->sede->id;
+        
+        # Se borra el registro que tenemos en "objeto"       
+        $c->stash->{objeto}->delete;        
+    
+        # Mensaje de confirmación
+        $c->flash->{status_msg} = "Se elimin&oacute; el registro.";
+    
+        #Redirigimos a lista
+        $c->response->redirect($c->uri_for('/admin/inscritos/lista', $sede_id));
 }
+
+
 
 =head2 envia_not
     Envia notificacion por correo cuando se crea un registro

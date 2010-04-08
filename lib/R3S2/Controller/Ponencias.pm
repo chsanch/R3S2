@@ -130,7 +130,7 @@ sub detalle :Chained('objeto') :PathPart('detalle') :Args(0) {
 sub aceptar :Chained('objeto') :PathPart('aceptar') :Args(0) {
         my ($self, $c) = @_;
     
-        # Se borra el registro que tenemos en "objeto"
+        # obtenemos el id del objeto
         my $ponencia = $c->stash->{objeto};
         $ponencia->aceptada('1');
         $ponencia->update;
@@ -158,6 +158,23 @@ sub cancelar :Chained('objeto') :PathPart('cancelar') :Args(0) {
     
         #Redirigimos a lista
         $c->response->redirect($c->uri_for('/admin/ponentes/lista',$sede_id));
+}
+
+sub eliminar :Chained('objeto') :PathPart('eliminar') :Args(0) {
+    my ($self, $c) = @_;
+
+        # obtenemos el id de la sede 
+        my $sede_id = $c->stash->{objeto}->sede->id;
+        
+        # Se borra el registro que tenemos en "objeto"       
+        $c->stash->{objeto}->delete;        
+    
+        # Mensaje de confirmación
+        $c->flash->{status_msg} = "Se elimin&oacute; el registro.";
+    
+        #Redirigimos a lista
+        $c->response->redirect($c->uri_for('/admin/ponentes/lista',$sede_id));
+
 }
 
 =head2 envia_not
