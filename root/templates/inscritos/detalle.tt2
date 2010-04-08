@@ -1,0 +1,20 @@
+[% META title = 'Detalle de Ponencia' -%]
+
+<h1> [% inscrito.sede.ciudad %]</h1>
+<div class="bloqinfo">
+  
+<h2>Inscrito:</h2>
+<h3>[% inscrito.nombres %] [% inscrito.apellidos %] </h3>
+<p> Correo: [% inscrito.email %] - Twitter: [% inscrito.twitter %]</p>
+<p> URL: <a href="[% inscrito.url %]">[% inscrito.url %] </a></p>
+<p> Ciudad de Procedencia: [% inscrito.ciudad %] </p>
+<p> Tipo de Comp: [% inscrito.tipo_comp %] - Tipo de Proc: [% inscrito.tipo_proc %] - Esp. DD: [% inscrito.esp_dd %] - RAM: [% inscrito.cant_ram %]</p>
+<p> <strong>Distro: [% inscrito.distro %] </strong></p>
+
+<h2> Comentarios</h2>
+<p> [% inscrito.comentarios %] </p>
+<br/>
+<p><a href="[% c.uri_for(c.controller.action_for('eliminar'), [ inscrito.id ]) %]" onclick="return confirm('&iquest;Est&aacute; seguro?');">Eliminar</a></p>
+</div>
+
+<p> <a href="[% c.uri_for('/admin/inscritos/lista', inscrito.sede.id) %]">Volver a Lista de Inscritos</a></p>
