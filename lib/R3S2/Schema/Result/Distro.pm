@@ -38,6 +38,6 @@ __PACKAGE__->add_unique_constraint("distro_id", ["id"]);
 
 __PACKAGE__->has_many("sede_distros" => "R3S2::Schema::Result::SedeDistro", "distro_id");
 __PACKAGE__->many_to_many(sedes => 'sede_distros', 'sede');
-
+__PACKAGE__->has_many("inscritos" => "R3S2::Schema::Result::Inscrito", "distro") ;
 
 1;

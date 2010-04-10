@@ -9,7 +9,7 @@
 <p> URL: <a href="[% inscrito.url %]">[% inscrito.url %] </a></p>
 <p> Ciudad de Procedencia: [% inscrito.ciudad %] </p>
 <p> Tipo de Comp: [% inscrito.tipo_comp %] - Tipo de Proc: [% inscrito.tipo_proc %] - Esp. DD: [% inscrito.esp_dd %] - RAM: [% inscrito.cant_ram %]</p>
-<p> <strong>Distro: [% inscrito.distro %] </strong></p>
+<p> <strong>Distro: [% inscrito.distro.nombre %] </strong></p>
 
 <h2> Comentarios</h2>
 <p> [% inscrito.comentarios %] </p>

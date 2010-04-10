@@ -128,7 +128,8 @@ __PACKAGE__->add_unique_constraint("inscrito_id", ["id"]);
 # Created by DBIx::Class::Schema::Loader v0.04006 @ 2010-02-08 19:49:58
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:cRQ3nClMikt8jOZF3EQqfQ
 
- __PACKAGE__->belongs_to(sede => 'R3S2::Schema::Result::Sede', 'sede');
+__PACKAGE__->belongs_to(sede => 'R3S2::Schema::Result::Sede', 'sede');
+__PACKAGE__->belongs_to(distro => 'R3S2::Schema::Result::Distro', 'distro');
 
 __PACKAGE__->add_columns(
     "fecha_ins",
