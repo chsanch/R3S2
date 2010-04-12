@@ -50,9 +50,17 @@ $(document).ready(function()
     { 
         $("#tabIns")
         .tablesorter(
-            {widthFixed: true,widgets: ['zebra']}
+            {
+                widthFixed: true,widgets: ['zebra'],
+                headers: {
+                    4: { sorter: false }
+                }
+            }
         )
-        .tablesorterPager({container: $("#pager")}); 
+        .tablesorterPager({
+                            container: $("#pager"),
+                            size: 20
+                        }); 
     } 
 );
 // ]]>
